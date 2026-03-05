@@ -1,0 +1,256 @@
+## Context
+A base single-page AI.FO landing site has already been generated using Input 1.
+Do NOT change the overall look and feel (dark, minimal, CFO-grade) or the section order, except where explicitly instructed below.
+Your task is to refine the site to production polish: conversion, responsiveness, stability, and consistency.
+Keep dependencies lightweight; do not add heavy UI libraries.
+
+---
+
+## 0) ENSURE FULL ALIGNMENT TO INPUT 1 (DO FIRST)
+
+Confirm all existing sections and anchors match:
+- `#problem`
+- `#tools`
+- `#why-now`
+- `#vision`
+- `#technical`
+- `#wedge`
+- `#for-you`
+- `#early-access`
+
+Confirm components exist per Input 1:
+Nav, Hero, WhoWhy, Problem, ExistingTools, WhyNow, ProductVision, TechnicalChallenge, Wedge, WhoThisIsFor, EarlyAccess, Footer
+
+Confirm fonts are loaded in `layout.tsx`:
+- Bebas Neue (display)
+- DM Sans (body)
+
+**Font loading note:**
+Prefer `next/font/google` to prevent layout shift.
+If Bebas Neue is not available via `next/font/google` in the scaffolded version, fall back gracefully to a `<link>` import. Do not block the build over font import method.
+
+Confirm color tokens are used consistently:
+`--bg`, `--text-primary`, `--text-secondary`, `--text-muted`, `--accent`, `--accent-hover`, `--border`, `--card-bg`
+
+---
+
+## 1) TYPOGRAPHY + SPACING POLISH
+
+Set consistent spacing:
+- Section wrapper: `py-20 md:py-24`
+- Inner width: `max-w-6xl mx-auto px-6 md:px-8`
+- Card padding: `p-6 md:p-8`
+
+Typography:
+- Hero headline: `font-display text-5xl sm:text-6xl md:text-7xl lg:text-8xl tracking-tight`
+- Section headlines: `font-display text-3xl md:text-4xl lg:text-5xl`
+- Body: `font-body text-base md:text-lg leading-relaxed text-white/70`
+- Micro labels: `uppercase tracking-widest text-white/45 text-xs`
+
+---
+
+## 2) HERO CLARITY BOOST (NO STRUCTURE CHANGE)
+
+Keep hero content from Input 1.
+
+- Improve CTA row sizing: `px-6 py-3 rounded-md font-medium`
+- Add supporting line under the subhead (muted, credible — not hype):
+  > "CFO-level financial reasoning — without the CFO headcount."
+- Re-audit hero visual panel for accidental trading UI elements. Remove if present:
+  - Tickers or exchange names
+  - Candlestick chart patterns
+  - Trading UI components
+- Keep only: abstract gradient curves, subtle grid lines, and floating metric chips (Runway, Burn, Margin, Variance).
+
+---
+
+## 3) ADD A "HOW IT WORKS" SECTION (NEW COMPONENT)
+
+Add this new section to increase comprehension and conversion.
+
+**Implementation:**
+- Create `components/HowItWorks.tsx`
+- Insert in `app/page.tsx` immediately **AFTER `<Hero />`** and **BEFORE `<WhoWhy />`**
+- Section ID: `#how-it-works`
+- Add `scroll-mt-24` to the section container
+
+**Section content:**
+- Micro label: `HOW IT WORKS`
+- Headline: "From raw data to decision-ready judgment."
+
+**Three step cards** (3 columns desktop, stacked full-width mobile):
+
+| Step | Title | Body |
+|---|---|---|
+| 01 | Ingest | Connect accounting, banking, payroll, and operational signals. |
+| 02 | Normalize | Reconcile messy schemas and link relationships across datasets. |
+| 03 | Reason | Generate narrative guidance tied to hiring, runway, pricing, and risk. |
+
+**Desktop:** Show subtle arrow connectors between step cards (inline SVG or CSS).
+
+**Mobile:** Hide all arrows and connectors entirely. Stack cards vertically, full width. No connectors shown at any mobile breakpoint.
+
+**Styling:**
+- Match existing card style: `bg-white/[0.04] border border-white/10 rounded-lg`
+- Use small inline SVG icons per step
+- Use accent color sparingly — step numbers only
+- No new dependencies
+
+---
+
+## 4) CFO BRIEF CARD POLISH (ProductVision.tsx)
+
+Keep the three CFO Brief examples exactly as written in Input 1. Improve presentation only:
+
+- Add a small header bar inside the memo card:
+  - Title: `"AI.FO Financial Brief"`
+  - Subtext: `"Generated moments ago"` (muted, small)
+- Memo body font: `text-sm md:text-base`
+- Key numbers: `font-medium` to make them visually pop
+- Keep orange left border on the card
+- Do not add additional orange elements elsewhere in this component
+
+---
+
+## 5) NAVIGATION + SCROLL BEHAVIOR
+
+**Smooth scrolling:**
+```css
+/* globals.css */
+html {
+  scroll-behavior: smooth;
+}
+```
+
+**Anchor offset:**
+Add `scroll-mt-24` to all section containers to offset the fixed nav bar.
+
+**Updated nav link order:**
+How It Works · Problem · Tools · Why Now · Vision · Technical · Wedge · For You · Early Access
+
+**Nav overflow handling (important):**
+With 9 links, the nav will overflow on mid-size screens (tablets and small laptops) before the hamburger menu activates. Apply the following to nav links on `md` through `lg` breakpoints:
+- Font size: `text-sm`
+- Link spacing: `gap-4`
+This prevents overflow between the `md` breakpoint (where the hamburger hides) and `lg` (where there is enough room for full-size links). At `lg` and above, restore normal spacing and font size.
+
+**Hamburger menu polish:**
+- Focus states on toggle button
+- Close on ESC key press
+- Close on overlay/backdrop click
+- Minimal CSS transition for open/close (no heavy animation library)
+- Toggle button must have `aria-expanded` and `aria-label`
+
+---
+
+## 6) WAITLIST FORM UX IMPROVEMENTS (EarlyAccess.tsx)
+
+- Use visible `<label>` elements for all inputs — do not rely on placeholders alone
+- Dark-theme select styling: `text-white/70`, dark background, orange focus ring
+
+**Button states:**
+- Idle: primary orange button, label "Join Early Access"
+- Loading: disabled + spinner indicator
+- Success: hide form entirely, show success panel
+
+**Success panel text:**
+> "You're on the list. We'll reach out to schedule early access."
+
+**Client-side validation with inline field errors:**
+- Name: required
+- Email: required + valid format
+
+---
+
+## 7) API ROUTE HARDENING (app/api/waitlist/route.ts)
+
+**Environment variables:**
+- `process.env.AIRTABLE_API_TOKEN`
+- `process.env.AIRTABLE_BASE_ID`
+- Table name is **hardcoded** as `"Submissions"` — no third env variable needed
+
+**Honeypot:**
+- Field name: `companyWebsite`
+- If filled → return `200 { ok: true }` silently. Do NOT send to Airtable.
+
+**Rate limiting:**
+- 10 requests per IP per hour
+- Implement in `lib/rateLimit.ts`
+- In-memory rate limiting is acceptable for MVP — prioritize simplicity and build stability
+- On limit exceeded → return `429 { ok: false, error: "Too many requests. Please try again later." }`
+
+**Server-side validation:**
+- Trim all inputs
+- Lowercase email
+- Cap all field lengths at 500 characters
+
+**Airtable POST endpoint:**
+```
+https://api.airtable.com/v0/{AIRTABLE_BASE_ID}/Submissions
+```
+
+**Request body:**
+```json
+{
+  "records": [{
+    "fields": {
+      "Name": "string",
+      "Email": "string",
+      "Company Size": "string",
+      "Accounting System": "string",
+      "Submitted At": "ISO timestamp"
+    }
+  }]
+}
+```
+
+**Headers:**
+```
+Authorization: Bearer {AIRTABLE_API_TOKEN}
+Content-Type: application/json
+```
+
+**Response shape — always use exactly:**
+```json
+{ "ok": true }
+// or
+{ "ok": false, "error": "message" }
+```
+
+**Error logging rules:**
+- On Airtable failure: log only the HTTP status code and request ID if available
+- Never log env vars, tokens, or user PII
+- Never return stack traces or sensitive details in any response
+
+---
+
+## 8) PERFORMANCE + NEXT.JS BEST PRACTICES
+
+- Use `next/font` for font loading where supported; fall back to `<link>` tag gracefully if needed — do not block the build
+- No heavy animation libraries
+- Keep `IntersectionObserver` scroll reveal lightweight and reusable as a single shared hook
+- Ensure `npm run dev` runs with zero console errors
+- Ensure `npm run build` completes cleanly
+
+---
+
+## 9) ACCESSIBILITY PASS
+
+- Verify semantic heading hierarchy: `h1` → `h2` → `h3` throughout all sections
+- All buttons have accessible names (`aria-label` where text alone is insufficient)
+- All form inputs associated with `<label>` elements
+- Focus rings visible — orange outline is the correct style
+- Hamburger toggle has `aria-expanded` and `aria-label`
+
+---
+
+## DELIVERABLE
+
+Return updated code with:
+- `components/HowItWorks.tsx` (new)
+- `app/page.tsx` with correct section ordering
+- `Nav.tsx` with How It Works anchor, overflow handling, and hamburger improvements
+- Polished typography and spacing across all sections
+- Hardened `app/api/waitlist/route.ts`
+- `lib/rateLimit.ts`
+- No unnecessary new dependencies

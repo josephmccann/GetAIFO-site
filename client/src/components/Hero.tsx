@@ -13,17 +13,20 @@ export default function Hero() {
           transition={{ duration: 0.6 }}
           className="max-w-2xl"
         >
-          <p className="text-xs font-semibold tracking-[0.2em] text-white/40 uppercase mb-6">
+          <p className="text-xs font-semibold tracking-[0.2em] text-white/45 uppercase mb-6">
             AI.FO • Early Access
           </p>
           <div className="mb-6">
-            <h1 className="text-6xl md:text-7xl lg:text-8xl leading-[0.9] text-white mb-2" data-testid="hero-heading">
+            <h1 className="font-display text-5xl sm:text-6xl md:text-7xl lg:text-8xl tracking-tight text-white mb-2" data-testid="hero-heading">
               Turning financial data into decision-ready judgment.
             </h1>
             <div className="w-24 h-1 bg-accent rounded-full mt-6"></div>
           </div>
-          <p className="text-lg md:text-xl text-white/70 mb-10 max-w-xl" data-testid="hero-subhead">
+          <p className="font-body text-base md:text-lg leading-relaxed text-white/70 mb-2 max-w-xl" data-testid="hero-subhead">
             An AI-powered CFO layer that translates messy financial signals into narrative, forward-looking decisions while preserving human accountability.
+          </p>
+          <p className="font-body text-base md:text-lg leading-relaxed text-white/45 mb-10 max-w-xl">
+            CFO-level financial reasoning — without the CFO headcount.
           </p>
           <div className="flex flex-col sm:flex-row gap-4">
             <a href="#early-access" className="btn-primary" data-testid="hero-btn-primary">
