@@ -12,7 +12,7 @@ const waitlistSchema = z.object({
   name: z.string().min(2, "Name is required"),
   email: z.string().email("Valid email is required"),
   companySize: z.string().optional(),
-  companyWebsite: z.string().optional(), // Honeypot field
+  companyWebsite: z.string().optional(),
 });
 
 type WaitlistValues = z.infer<typeof waitlistSchema>;
@@ -20,6 +20,7 @@ type WaitlistValues = z.infer<typeof waitlistSchema>;
 export default function EarlyAccess() {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isSuccess, setIsSuccess] = useState(false);
+  const [errorMessage, setErrorMessage] = useState<string | null>(null);
 
   const form = useForm<WaitlistValues>({
     resolver: zodResolver(waitlistSchema),
@@ -27,35 +28,37 @@ export default function EarlyAccess() {
       name: "",
       email: "",
       companySize: "",
-      companyWebsite: "", // Honeypot default
+      companyWebsite: "",
     },
   });
 
   async function onSubmit(data: WaitlistValues) {
     setIsSubmitting(true);
-    
-    // Check honeypot first
-    if (data.companyWebsite) {
-      setIsSubmitting(false);
-      setIsSuccess(true);
-      return;
-    }
+    setErrorMessage(null);
 
-    // Simulate API call for mockup mode (this would normally hit /api/waitlist)
-    await new Promise((resolve) => setTimeout(resolve, 1500));
-    console.log("Waitlist submission (mock):", {
-      name: data.name,
-      email: data.email,
-      companySize: data.companySize
-    });
-    
-    setIsSuccess(true);
-    setIsSubmitting(false);
+    try {
+      const res = await fetch("/api/waitlist", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(data),
+      });
+
+      const json = await res.json();
+
+      if (json.ok) {
+        setIsSuccess(true);
+      } else {
+        setErrorMessage(json.error || "Something went wrong. Please try again.");
+      }
+    } catch {
+      setErrorMessage("Could not connect. Please check your connection and try again.");
+    } finally {
+      setIsSubmitting(false);
+    }
   }
 
   return (
     <section id="early-access" className="section-padding border-t border-white/10 relative overflow-hidden">
-      {/* Background glow */}
       <div className="absolute bottom-0 right-0 w-[600px] h-[600px] bg-accent/5 rounded-full blur-[150px] pointer-events-none" />
 
       <div className="container-custom relative z-10">
@@ -84,7 +87,6 @@ export default function EarlyAccess() {
             ) : (
               <Form {...form}>
                 <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6">
-                  {/* Hidden honeypot field */}
                   <div className="hidden" aria-hidden="true">
                     <FormField
                       control={form.control}
@@ -107,17 +109,17 @@ export default function EarlyAccess() {
                       <FormItem>
                         <FormLabel className="text-white/80 font-medium">Name</FormLabel>
                         <FormControl>
-                          <Input 
-                            placeholder="Jane Doe" 
-                            className="bg-black border-white/20 focus-visible:ring-accent focus-visible:border-accent text-white placeholder:text-white/20 h-12" 
-                            {...field} 
+                          <Input
+                            placeholder="Jane Doe"
+                            className="bg-black border-white/20 focus-visible:ring-accent focus-visible:border-accent text-white placeholder:text-white/20 h-12"
+                            {...field}
                           />
                         </FormControl>
                         <FormMessage className="text-destructive font-medium" />
                       </FormItem>
                     )}
                   />
-                  
+
                   <FormField
                     control={form.control}
                     name="email"
@@ -125,11 +127,11 @@ export default function EarlyAccess() {
                       <FormItem>
                         <FormLabel className="text-white/80 font-medium">Email</FormLabel>
                         <FormControl>
-                          <Input 
+                          <Input
                             type="email"
-                            placeholder="jane@company.com" 
-                            className="bg-black border-white/20 focus-visible:ring-accent focus-visible:border-accent text-white placeholder:text-white/20 h-12" 
-                            {...field} 
+                            placeholder="jane@company.com"
+                            className="bg-black border-white/20 focus-visible:ring-accent focus-visible:border-accent text-white placeholder:text-white/20 h-12"
+                            {...field}
                           />
                         </FormControl>
                         <FormMessage className="text-destructive font-medium" />
@@ -162,8 +164,12 @@ export default function EarlyAccess() {
                     )}
                   />
 
-                  <Button 
-                    type="submit" 
+                  {errorMessage && (
+                    <p className="text-sm text-red-400 font-medium">{errorMessage}</p>
+                  )}
+
+                  <Button
+                    type="submit"
                     disabled={isSubmitting}
                     className="w-full bg-accent hover:bg-accent-hover text-black font-bold h-12 text-lg focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2 focus-visible:ring-offset-black"
                   >
