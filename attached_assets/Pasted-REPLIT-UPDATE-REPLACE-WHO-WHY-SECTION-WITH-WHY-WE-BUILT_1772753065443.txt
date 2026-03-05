@@ -1,0 +1,67 @@
+REPLIT UPDATE — REPLACE "WHO / WHY" SECTION WITH "WHY WE BUILT THIS"
+
+Goal
+Remove founder bio/photo from the WhoWhy section and replace it with a focused, product-forward “Why We Built This” narrative. Keep the founding insight; remove personal profile.
+
+Do NOT change the design system, section order, or any other component.
+Do NOT add new dependencies.
+Keep the dark, minimal, CFO-grade style.
+
+Changes to Make
+
+1) Update components/WhoWhy.tsx
+
+Remove entirely:
+- The “WHO” column (founder name, photo, bio)
+- Any two-column layout tied to the Who/Why split
+- Any <img> or image import referencing a founder photo
+
+Replace with:
+A single-column, clean prose section:
+
+- Section ID: #why-built
+- Micro label: WHY WE BUILT THIS
+- Headline: “Leaders had the data. They didn’t have the judgment.”
+- Body (two short paragraphs, use text-white/70 and font-body):
+
+Paragraph 1:
+“Across organizations of every size, the same pattern repeated: accounting was accurate, reports were generated, and dashboards were full — but no one was translating any of it into decisions. Founders and operators were absorbing CFO responsibilities by default, without the infrastructure to support them.”
+
+Paragraph 2:
+“AI.FO was built to close that gap. Not with more reporting tools or heavier dashboards — but with a reasoning layer that takes what your systems already know and turns it into forward-looking judgment your organization can actually act on.”
+
+Optional closing line (muted, smaller; text-white/50 text-sm):
+“Built by operators who have lived on both sides of this problem.”
+
+Layout requirements:
+- Single column (no cards, no icons, no columns)
+- Content container: max-w-3xl mx-auto
+- Section wrapper spacing: py-20 md:py-24
+- Add scroll-mt-24 to the section container so anchors clear the fixed nav
+
+2) Update Nav.tsx
+
+If the nav currently has a link labeled “Who” or “About” pointing to #who or #whywhy, update it to:
+- Label: “Why Built”
+- Anchor: #why-built
+
+If no such link exists, do not add a new one unless the nav already includes all other major sections.
+
+Important:
+Do NOT change or remove the existing “Why Now” link (#why-now). Avoid having two nav items both labeled “Why”.
+
+3) Update app/page.tsx
+Confirm <WhoWhy /> remains in the same position in the page order (after <HowItWorks />, before <Problem />). Do not reorder sections.
+
+4) Global Search
+Search the codebase for any remaining user-visible references to “WHO” or “Who/Why” section labels or nav labels.
+Replace user-visible instances with “Why Built” or “Why We Built This” as appropriate.
+
+Do NOT rename the file WhoWhy.tsx; internal file names stay the same.
+
+Deliverable
+Return updated code for:
+- components/WhoWhy.tsx
+- components/Nav.tsx (only if applicable)
+- app/page.tsx (confirm ordering only; minimal/no changes)
+Preserve existing styling tokens and design language. No new dependencies.

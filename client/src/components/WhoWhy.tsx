@@ -1,29 +1,22 @@
 export default function WhoWhy() {
   return (
-    <section className="section-padding border-t border-white/10">
-      <div className="container-custom">
-        <div className="grid md:grid-cols-2 gap-16 md:gap-24">
-          <div>
-            <span className="text-label">WHO</span>
-            <h2 className="text-4xl md:text-5xl text-white mb-6">
-              Finance executive.<br />
-              Operator.<br />
-              Builder.
-            </h2>
-            <p className="text-lg">
-              Joe McCann brings over 20 years of C-suite and senior leadership experience across education, nonprofits, and operating organizations. He specializes in building financial infrastructure, reporting systems, and decision frameworks in complex, fast-moving environments.
-            </p>
-          </div>
-          <div>
-            <span className="text-label">WHY</span>
-            <h2 className="text-4xl md:text-5xl text-white mb-6">
-              Built from repeated observation.
-            </h2>
-            <p className="text-lg">
-              Across organizations of every size, leaders were making high-stakes decisions using backward-looking tools and incomplete synthesis. AI.FO translates seasoned CFO judgment into a scalable, responsible insight layer — improving decision quality and speed while preserving human accountability.
-            </p>
-          </div>
+    <section id="why-built" className="section-padding border-t border-white/10">
+      <div className="max-w-3xl mx-auto px-6 md:px-8">
+        <span className="text-label">WHY WE BUILT THIS</span>
+        <h2 className="font-display text-3xl md:text-4xl lg:text-5xl text-white mb-10">
+          Leaders had the data. They didn't have the judgment.
+        </h2>
+        <div className="space-y-6">
+          <p className="font-body text-base md:text-lg leading-relaxed text-white/70">
+            Across organizations of every size, the same pattern repeated: accounting was accurate, reports were generated, and dashboards were full — but no one was translating any of it into decisions. Founders and operators were absorbing CFO responsibilities by default, without the infrastructure to support them.
+          </p>
+          <p className="font-body text-base md:text-lg leading-relaxed text-white/70">
+            AI.FO was built to close that gap. Not with more reporting tools or heavier dashboards — but with a reasoning layer that takes what your systems already know and turns it into forward-looking judgment your organization can actually act on.
+          </p>
         </div>
+        <p className="text-white/50 text-sm mt-8">
+          Built by operators who have lived on both sides of this problem.
+        </p>
       </div>
     </section>
   );
