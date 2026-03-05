@@ -1,0 +1,497 @@
+## PROJECT OVERVIEW
+
+You are building a production-ready marketing website for **AI.FO** (domain: getaifo.com).
+
+**Goal:** A single-page, high-conversion landing page that matches the AI.FO pitch deck style — dark, minimal, CFO-grade.
+
+Prioritize credibility and clarity: "decision-ready judgment," not "dashboards."
+
+The site should feel like it was designed by a senior fintech product designer, not a generic SaaS template.
+
+**Tone:** authoritative, intelligent, minimal, and spacious.
+
+---
+
+## TECH STACK
+
+- Next.js (App Router) + TypeScript
+- Tailwind CSS
+- Airtable API for waitlist submissions via a Next.js API route (`/api/waitlist`)
+- Airtable token must **NEVER** be exposed client-side
+- Must run cleanly with `npm run dev`
+- Must deploy cleanly on Replit Deployments
+- No additional backend required
+
+---
+
+## PROJECT FILE STRUCTURE
+
+```
+/
+├── app/
+│   ├── layout.tsx
+│   ├── page.tsx
+│   ├── globals.css
+│   └── api/
+│       └── waitlist/
+│           └── route.ts
+├── components/
+│   ├── Nav.tsx
+│   ├── Hero.tsx
+│   ├── WhoWhy.tsx
+│   ├── Problem.tsx
+│   ├── ExistingTools.tsx
+│   ├── WhyNow.tsx
+│   ├── ProductVision.tsx
+│   ├── TechnicalChallenge.tsx
+│   ├── Wedge.tsx
+│   ├── WhoThisIsFor.tsx
+│   ├── EarlyAccess.tsx
+│   └── Footer.tsx
+├── lib/
+│   └── rateLimit.ts
+├── tailwind.config.ts
+├── next.config.ts
+└── package.json
+```
+
+---
+
+## BRAND & DESIGN SYSTEM
+
+### Typography
+
+Match the AI.FO pitch deck typography as closely as possible.
+
+- **Display font:** Bebas Neue
+- **Body / UI font:** DM Sans
+
+Import both via Google Fonts in `layout.tsx`.
+
+Display font should only be used for large headings.
+All paragraph text must use DM Sans.
+
+### Colors (globals.css)
+
+```css
+:root {
+  --bg: #000000;
+  --text-primary: #FFFFFF;
+  --text-secondary: rgba(255,255,255,0.72);
+  --text-muted: rgba(255,255,255,0.45);
+  --accent: #CC6600;
+  --accent-hover: #E07000;
+  --border: rgba(255,255,255,0.10);
+  --card-bg: rgba(255,255,255,0.04);
+  --orange-panel: #CC6600;
+}
+```
+
+### Tailwind Extension
+
+```ts
+extend: {
+  colors: {
+    accent: '#CC6600',
+    'accent-hover': '#E07000'
+  },
+  fontFamily: {
+    display: ['Bebas Neue', 'sans-serif'],
+    body: ['DM Sans', 'sans-serif']
+  }
+}
+```
+
+### Design Principles
+
+- Black background throughout
+- Large negative space
+- Large bold headings in display font
+- Short scannable paragraphs in DM Sans
+- Cards: `bg-white/[0.04] border border-white/10 rounded-lg`
+- Section dividers: `border-t border-white/10`
+
+### Buttons
+
+- **Primary:** `bg-accent text-black hover:bg-accent-hover`
+- **Secondary:** `border border-accent text-white hover:bg-accent hover:text-black`
+
+---
+
+## PAGE SECTIONS
+
+---
+
+### 1. NAVIGATION (Nav.tsx)
+
+- Sticky, `position: fixed`, full width, `backdrop-blur-sm bg-black/80`
+- **Left:** AI.FO wordmark in display font with thin orange underline rule beneath it
+- **Right anchor links:** Problem · Tools · Why Now · Vision · Technical · Wedge · For You · Early Access
+- **CTA button:** "Join Early Access" (primary button, small)
+- **Mobile:** collapse links into hamburger menu
+
+---
+
+### 2. HERO (Hero.tsx)
+
+**Layout:** Two-column on desktop. Single column on mobile.
+
+**Left side:**
+- Small label above headline: `AI.FO • Early Access` in muted text, letter-spaced
+- **Headline** (display font, very large): "Turning financial data into decision-ready judgment."
+- Thin orange underline rule below headline
+- **Subhead** (DM Sans, secondary text color): "An AI-powered CFO layer that translates messy financial signals into narrative, forward-looking decisions while preserving human accountability."
+- **CTA buttons:**
+  - Primary: "Join Early Access" (scrolls to `#early-access`)
+  - Secondary: "See the wedge →" (scrolls to `#wedge`)
+
+**Right side — Abstract Visual Panel:**
+
+Important constraint: This must NOT resemble a stock trading interface.
+
+Do NOT use:
+- Tickers or exchange names
+- Candlestick charts
+- Trading UI patterns
+
+Instead, build an original abstract SVG visualization with:
+- Subtle grid lines in `rgba(255,255,255,0.06)`
+- Smooth orange gradient curves suggesting upward trend
+- Floating metric chip labels styled as small dark pill components with orange text:
+  - "Runway: 11 months"
+  - "Burn ↑ 22%"
+  - "Margin: 38%"
+  - "Variance detected"
+- Overall feel: financial intelligence and strategic signals — not trading
+
+Hide this panel on mobile.
+
+---
+
+### 3. WHO / WHY (WhoWhy.tsx)
+
+**Layout:** Two-column on desktop.
+
+**WHO:**
+- Heading: "Finance executive. Operator. Builder."
+- Body: Joe McCann brings over 20 years of C-suite and senior leadership experience across education, nonprofits, and operating organizations. He specializes in building financial infrastructure, reporting systems, and decision frameworks in complex, fast-moving environments.
+
+**WHY:**
+- Heading: "Built from repeated observation."
+- Body: Across organizations of every size, leaders were making high-stakes decisions using backward-looking tools and incomplete synthesis. AI.FO translates seasoned CFO judgment into a scalable, responsible insight layer — improving decision quality and speed while preserving human accountability.
+
+---
+
+### 4. THE PROBLEM (Problem.tsx)
+
+**Section ID:** `#problem`
+
+- Section label: "THE PROBLEM"
+- Headline: "CFO-level decisions begin far earlier than CFO-level staffing."
+- Subhead: "Organizations under $50M face increasing financial complexity without the leadership infrastructure to manage it."
+
+**Three cards:**
+
+1. **The gap is structural.** A full-time CFO is often unavailable, unaffordable, or premature. Founders and operators absorb CFO responsibilities by default.
+2. **The data exists — judgment doesn't.** Systems accurately record activity but do not produce synthesis, prioritization, or forward-looking guidance.
+3. **The cost is real.** High-impact decisions — hiring timing, cash runway, pricing, cost structure — are made with incomplete context and elevated risk.
+
+**Closing statement** (centered, larger text):
+"Organizations outgrow their financial infrastructure before they can staff for it."
+
+---
+
+### 5. WHY EXISTING TOOLS DON'T SOLVE THIS (ExistingTools.tsx)
+
+**Section ID:** `#tools`
+
+- Section label: "THE GAP"
+- Headline: "Today's finance stack optimizes for reporting and compliance — not decision-making."
+
+**Four cards in a 2×2 grid:**
+
+1. **Dashboards surface metrics** — but lack context, prioritization, and the "so what."
+2. **Fractional advisory is episodic** — not continuous. Insight arrives between decisions, not during them.
+3. **Accounting systems are backward-looking** — they record what happened; they don't interpret it.
+4. **FP&A tools are heavyweight and slow** — built for finance teams that don't exist yet at this stage.
+
+**Closing banner** (full-width, subtle orange-tint background):
+"Net effect: more data — less clarity when it matters most."
+
+---
+
+### 6. WHY NOW (WhyNow.tsx)
+
+**Section ID:** `#why-now`
+
+- Section label: "WHY NOW"
+- Headline: "The CFO coverage gap is widening — while AI capability has crossed a threshold."
+
+**Three points:**
+
+1. Financial complexity is increasing faster than leadership infrastructure can scale.
+2. Financial data is increasingly accessible via APIs, exports, and open banking.
+3. Modern LLM reasoning now enables narrative synthesis across fragmented, inconsistent datasets.
+
+---
+
+### 7. PRODUCT VISION (ProductVision.tsx)
+
+**Section ID:** `#vision`
+
+- Section label: "THE VISION"
+- Headline: "Augmented CFO Judgment."
+- Subhead: "An AI-powered CFO layer that sits above your systems of record — ingesting accounting, banking, payroll, and operational data to produce the insight your organization actually needs."
+
+**Left column — capability list** (orange accent dots):
+- Narrative insights leaders can actually use — not more charts
+- Forward-looking risk signals before they become problems
+- Decision framing tied to real choices: hiring, spend, runway, pricing
+- Learns and evolves alongside the organization over time
+
+**Right column — CFO Brief Card:**
+
+Style as a dark memo card with orange left border and small label "AI.FO Analysis" in the top corner. Use monospace-style font for the output text. Include three stacked or tabbed examples:
+
+**Example 1 — Runway Early Warning:**
+"Cash runway has compressed from 14 months to 9 months over the past two quarters, driven primarily by a 31% increase in payroll and a slowdown in receivables collection. At the current burn rate, the organization reaches a critical threshold in Q3. Recommended actions: accelerate Q2 collections, pause two open headcount requisitions pending revenue milestone confirmation."
+
+**Example 2 — Spend Variance Narrative:**
+"Operating expenses exceeded budget by 18% in March, concentrated in three categories: software subscriptions (+$12K), contractor spend (+$28K), and travel (+$9K). The contractor overrun is tied to the accelerated product timeline. This is a one-time variance, but if the timeline extends, a reforecast is warranted before the board meeting."
+
+**Example 3 — Hiring Decision Framing:**
+"Adding a senior engineer at $180K fully loaded increases monthly burn by $15K and compresses runway by approximately 6 weeks. At current revenue growth of 8% month-over-month, the breakeven on this hire is approximately 4.5 months post-ramp. Recommend proceeding if Q2 revenue lands within 10% of plan; defer if it misses by more than 15%."
+
+**Closing line:**
+"A collaborative intelligence model that feels like a trusted CFO — not a dashboard, and not an automation fantasy."
+
+---
+
+### 8. TECHNICAL CHALLENGE (TechnicalChallenge.tsx)
+
+**Section ID:** `#technical`
+
+- Section label: "THE TECHNICAL CHALLENGE"
+- Headline: "Reasoning, Not Reporting."
+
+**Two orange panels side by side** (full `bg-accent` background, dark text):
+
+**Left panel — Constraints of the Real World:**
+- Financial data is fragmented across inconsistent systems and schemas
+- Signal lives in the relationships between datasets — not inside them
+- CFO judgment is contextual, probabilistic, and narrative-driven
+- Accuracy, explainability, and trust matter more than novelty
+
+**Right panel — Technical Requirements:**
+- Normalize messy, real-world financial data across sources
+- Reason across time, entities, and uncertainty
+- Produce outputs humans trust — not just outputs that are correct
+- Support iterative refinement as data and context evolve
+
+**Full-width footer line below panels** (white text, centered):
+"This product lives or dies on system design, not surface UX."
+
+---
+
+### 9. THE WEDGE (Wedge.tsx)
+
+**Section ID:** `#wedge`
+
+- Section label: "THE WEDGE"
+- Headline: "Turning raw financial data into continuous, decision-ready signals."
+
+**Two columns:**
+
+**Left — Initial Focus:**
+- Organizations under $50M with no full-time CFO
+- Monthly close is done — but insight arrives too late to matter, if at all
+- Decisions are recurring, not one-off: hiring, runway, spend, risk
+
+**Right — What We're Building:**
+- A lightweight CFO intelligence layer
+- Ingests GL + bank + payroll data
+- Normalizes and reconciles across systems
+- Produces plain-language financial narratives
+- Surfaces early warning signals: runway, burn, variance, risk
+- Frames decisions tied to upcoming organizational choices
+
+---
+
+### 10. WHO THIS IS FOR (WhoThisIsFor.tsx)
+
+**Section ID:** `#for-you`
+
+- Section label: "WHO THIS IS FOR"
+- Headline: "Built for organizations that have outgrown their financial infrastructure."
+
+**Three cards** with orange accent top border:
+
+1. **Small & Mid-Size Businesses** — $1M–$50M revenue. You have a bookkeeper and accounting software. You don't have a CFO. You need one.
+2. **Venture-Backed Startups** — Pre-Series B. Your burn rate matters more than your dashboard. You need forward-looking judgment, not backward-looking reports.
+3. **Nonprofits & Mission-Driven Orgs** — Complex funding structures, board accountability, and limited finance staff. CFO-level clarity shouldn't require CFO-level headcount.
+
+**Closing line:**
+"If you're making high-stakes financial decisions without a CFO in the room — AI.FO was built for you."
+
+---
+
+### 11. EARLY ACCESS (EarlyAccess.tsx)
+
+**Section ID:** `#early-access`
+
+- Section label: "EARLY ACCESS"
+- Headline: "Join the waitlist."
+- Subhead: "We're selecting 3–5 design partner organizations for early access. We'll reach out personally to schedule a conversation."
+
+**Form fields:**
+- Name (text, required)
+- Email (email, required)
+- Company Size (select, optional): Under $1M / $1M–$5M / $5M–$20M / $20M–$50M / Over $50M
+- Accounting System (select, optional): QuickBooks / Xero / NetSuite / Sage Intacct / Other / Not sure yet
+
+**Hidden honeypot field** (spam protection):
+- Field name: `companyWebsite`
+- Hidden via CSS (`display: none`)
+- If filled on submission → silently reject, show success message anyway
+
+**Form behavior:**
+- Validate: name and email required; email must be valid format
+- Show loading state on button during submission
+- On success: replace form with "You're on the list. We'll be in touch."
+- On error: show inline error — "Something went wrong. Please try again or email hello@getaifo.com."
+
+---
+
+### 12. FOOTER (Footer.tsx)
+
+- Left: AI.FO wordmark with thin orange underline
+- Center: "Turning financial data into decision-ready judgment."
+- Right: `hello@getaifo.com`
+- Bottom bar: "© 2026 AI.FO • Not accounting, tax, or legal advice."
+- Subtle top border: `border-white/10`
+
+---
+
+## API ROUTE (/api/waitlist/route.ts)
+
+```ts
+// POST handler
+// Read from environment:
+//   process.env.AIRTABLE_API_TOKEN
+//   process.env.AIRTABLE_BASE_ID
+// Table name is hardcoded as: Submissions
+
+// Server-side validation:
+//   - Trim all inputs
+//   - Lowercase email
+//   - Cap field length at 500 characters
+//   - If honeypot field (companyWebsite) is filled → return { ok: true } silently
+
+// Rate limit: 10 requests per IP per hour (use lib/rateLimit.ts)
+
+// POST to:
+// https://api.airtable.com/v0/{AIRTABLE_BASE_ID}/Submissions
+
+// Request body:
+// {
+//   records: [{
+//     fields: {
+//       Name: string,
+//       Email: string,
+//       "Company Size": string,
+//       "Accounting System": string,
+//       "Submitted At": ISO timestamp
+//     }
+//   }]
+// }
+
+// Headers:
+//   Authorization: Bearer {AIRTABLE_API_TOKEN}
+//   Content-Type: application/json
+
+// Response:
+//   Success: { ok: true }
+//   Failure: { ok: false, error: "message" }
+
+// Token must NEVER appear in client-side code or responses.
+```
+
+---
+
+## AIRTABLE TABLE STRUCTURE
+
+Your Airtable base **"AI.FO Waitlist"** → table **"Submissions"** must have these exact field names:
+
+| Field | Type |
+|---|---|
+| Name | Single line text |
+| Email | Email |
+| Company Size | Single select |
+| Accounting System | Single select |
+| Submitted At | Date (include time) |
+
+---
+
+## SCROLL REVEAL
+
+Use a lightweight `IntersectionObserver` hook to add entrance animations on sections:
+
+- Initial state: `opacity-0 translate-y-4`
+- Revealed state: `opacity-100 translate-y-0`
+- Duration: `700ms`
+- Keep it subtle — this is a CFO product, not a consumer app
+
+---
+
+## SEO (layout.tsx)
+
+```tsx
+export const metadata = {
+  title: 'AI.FO — Decision-Ready Financial Judgment',
+  description: 'AI-powered CFO reasoning for organizations under $50M. Narrative insights, forward-looking risk signals, and decision framing — without the CFO headcount.',
+  openGraph: {
+    title: 'AI.FO — Decision-Ready Financial Judgment',
+    description: 'CFO-level reasoning. Without the CFO headcount.',
+    url: 'https://getaifo.com',
+    siteName: 'AI.FO',
+  },
+}
+```
+
+---
+
+## ANALYTICS PLACEHOLDER
+
+```tsx
+{/* Analytics placeholder — replace with Plausible or PostHog */}
+{/* <Script src="https://plausible.io/js/script.js" data-domain="getaifo.com" /> */}
+```
+
+---
+
+## ACCESSIBILITY
+
+- Semantic heading hierarchy: h1 → h2 → h3
+- All buttons have accessible labels
+- Form inputs have associated `<label>` elements
+- Color contrast meets WCAG AA
+- Focus states use orange outline
+
+---
+
+## RESPONSIVE BREAKPOINTS
+
+- Mobile-first
+- All two-column layouts stack on mobile
+- Nav collapses to hamburger on mobile
+- Hero visual panel hidden on mobile (text block only)
+
+---
+
+## QUALITY BAR
+
+The final site should feel like a fintech product built by experienced operators.
+
+Dark. Minimal. Authoritative. Intentional.
+
+Every element should reinforce that AI.FO is serious financial infrastructure — not another SaaS dashboard.
