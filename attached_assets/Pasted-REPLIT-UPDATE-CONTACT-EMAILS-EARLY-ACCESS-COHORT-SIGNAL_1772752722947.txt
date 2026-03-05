@@ -1,0 +1,198 @@
+REPLIT UPDATE — CONTACT EMAILS + EARLY ACCESS COHORT SIGNAL
+
+Goal
+Improve credibility and communication clarity on the AI.FO landing page by integrating structured contact emails and adding an Early Access Cohort credibility signal.
+
+These updates must remain visually subtle and consistent with the existing dark, minimal, CFO-grade design.
+
+Emails available:
+hello@getaifo.com
+questions@getaifo.com
+product@getaifo.com
+sales@getaifo.com
+investors@getaifo.com
+info@getaifo.com
+tech@getaifo.com
+
+
+Rules
+
+Do NOT add new dependencies.
+
+Keep styling minimal and consistent with the existing design system.
+
+Use mailto: links for all email addresses.
+
+Do NOT add more than three additional visible addresses outside the footer.
+
+Do NOT surface info@getaifo.com or tech@getaifo.com publicly.
+
+Do NOT add a new "Contact Us" page or section.
+
+Maintain typography hierarchy and visual balance with the primary CTA.
+
+All added elements should appear visually quieter than the main CTA button.
+
+
+------------------------------------------------
+
+1) Footer.tsx
+
+Primary contact email:
+
+hello@getaifo.com
+
+Make this a mailto link.
+
+Add a secondary line below it:
+
+"Investors: investors@getaifo.com"
+
+Make investors@getaifo.com a mailto link.
+
+Styling requirements:
+
+Use muted typography:
+
+text-white/60  
+text-sm
+
+Spacing should be subtle and aligned with existing footer layout.
+
+Do not increase visual prominence beyond the current footer text hierarchy.
+
+The footer should appear professional but understated.
+
+
+------------------------------------------------
+
+2) EarlyAccess.tsx
+
+This section will receive two improvements:
+
+• Early Access Cohort credibility signal
+• Contact row with structured email links
+
+
+------------------------------------------------
+
+A) Add Early Access Cohort block
+
+Insert a small informational block ABOVE the waitlist form.
+
+Content:
+
+Label:
+EARLY ACCESS COHORT
+
+Body text:
+"We’re onboarding a small group of organizations helping shape the first version of AI.FO."
+
+Supporting line:
+"Interested in participating? Join the waitlist or contact sales@getaifo.com."
+
+sales@getaifo.com should be a mailto link.
+
+Styling guidelines:
+
+Label styling:
+uppercase
+tracking-widest
+text-xs
+text-white/45
+
+Body text:
+text-white/70
+max-w-xl
+
+Supporting line:
+text-white/60
+
+Spacing:
+Add comfortable spacing between the cohort block and the form.
+
+This block must remain visually quieter than the CTA.
+
+
+------------------------------------------------
+
+B) Error fallback message
+
+If the waitlist submission fails, update the error message to:
+
+"Something went wrong. Please try again or email questions@getaifo.com."
+
+questions@getaifo.com should be a mailto link.
+
+This message should appear in the existing error display component.
+
+
+------------------------------------------------
+
+C) Add Contact row beneath the form
+
+Below the waitlist form (and also beneath the success panel if the form is hidden after submission), add a compact contact row.
+
+Label:
+
+Contact
+
+Links:
+
+Product feedback: product@getaifo.com  
+Early access / pilots: sales@getaifo.com  
+Investor inquiries: investors@getaifo.com
+
+Each should be mailto links.
+
+Styling:
+
+text-white/55  
+text-sm
+
+Layout:
+
+Desktop:
+Display links horizontally with even spacing.
+
+Mobile:
+Stack links vertically with small spacing.
+
+These links must appear visually quieter than the primary CTA button.
+
+
+------------------------------------------------
+
+3) Global search
+
+Search the codebase for any user-visible contact emails.
+
+Replace with:
+
+hello@getaifo.com for general contact
+
+questions@getaifo.com for error/help fallback
+
+Do NOT display:
+
+info@getaifo.com  
+tech@getaifo.com
+
+These addresses should remain unused publicly.
+
+
+------------------------------------------------
+
+Deliverable
+
+Return updated code for:
+
+components/Footer.tsx
+
+components/EarlyAccess.tsx
+
+and any file where a contact email appears.
+
+Preserve existing layout and styling conventions.
+
+Do not add new dependencies.
