@@ -1,0 +1,53 @@
+REPLIT CHANGE REQUEST — RENAME “THE WEDGE” TO USER-FRIENDLY LANGUAGE
+
+Goal:
+Update the existing AI.FO landing page to remove internal startup jargon (“The Wedge”) and replace it with user-facing wording, without changing the design system, layout quality, or section position in the page flow.
+
+Do NOT add new dependencies. Keep the dark, minimal, CFO-grade style.
+
+Changes to make:
+
+1) Rename the Wedge section (components/Wedge.tsx)
+- Replace the section label text “THE WEDGE” with: “WHERE AI.FO STARTS”
+- Replace the section headline text:
+  From: “Turning raw financial data into continuous, decision-ready signals.”
+  To: “Where AI.FO starts: continuous decision-ready signals.”
+
+2) Update the Wedge section body copy (keep the same two-column layout)
+Left column title:
+- From: “Initial Focus”
+- To: “Initial focus”
+
+Left column bullets (keep meaning, tighten language):
+- “Organizations under $50M with no full-time CFO”
+- “Monthly close is done — but insight arrives too late to matter, if at all”
+- “Decisions are recurring: hiring, runway, spend, risk”
+
+Right column title:
+- From: “What We’re Building”
+- To: “First capability”
+
+Right column bullets (keep meaning, tighten language):
+- “A lightweight CFO intelligence layer”
+- “Ingests GL + bank + payroll data”
+- “Normalizes and reconciles across systems”
+- “Produces plain-language financial narratives”
+- “Surfaces early warning signals: runway, burn, variance, risk”
+- “Frames decisions tied to upcoming organizational choices”
+
+Optional closing line (add below bullets, muted text):
+“Start narrow. Deliver judgment. Expand into a full reasoning layer.”
+
+3) Anchor / IDs
+- Keep the section ID as #wedge for now to avoid breaking existing anchor links and nav behavior.
+- If the UI shows the word “Wedge” anywhere in navigation labels, change the nav label to:
+  “Where AI.FO Starts”
+  but keep the href pointing to #wedge.
+
+4) Any other occurrences
+- Search the codebase for the string “wedge” used in user-visible text.
+- Replace user-visible occurrences with “Where AI.FO Starts” (do NOT change internal file/component names).
+- Confirm smooth scrolling and scroll-mt offsets still work correctly with the fixed nav.
+
+Deliverable:
+Return updated code reflecting the renamed section label/headline, updated nav label, and any other user-visible instances of “The Wedge” removed, while preserving the same styling and layout.

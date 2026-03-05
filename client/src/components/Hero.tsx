@@ -33,7 +33,7 @@ export default function Hero() {
               Join Early Access
             </a>
             <a href="#wedge" className="btn-secondary" data-testid="hero-btn-secondary">
-              See the wedge →
+              Where AI.FO Starts →
             </a>
           </div>
         </motion.div>

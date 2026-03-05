@@ -29,7 +29,7 @@ export default function Nav() {
     { name: "Why Now", href: "#why-now" },
     { name: "Vision", href: "#vision" },
     { name: "Technical", href: "#technical" },
-    { name: "Wedge", href: "#wedge" },
+    { name: "Where AI.FO Starts", href: "#wedge" },
     { name: "For You", href: "#for-you" },
   ];
 
