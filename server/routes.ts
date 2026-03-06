@@ -78,9 +78,9 @@ export async function registerRoutes(
       );
 
       if (!airtableRes.ok) {
-        const requestId = airtableRes.headers.get("x-request-id");
+        const body = await airtableRes.text();
         console.error(
-          `Airtable error: status=${airtableRes.status}${requestId ? ` requestId=${requestId}` : ""}`
+          `Airtable error: status=${airtableRes.status} body=${body}`
         );
         return res.status(502).json({
           ok: false,
