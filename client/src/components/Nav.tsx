@@ -30,7 +30,6 @@ export default function Nav() {
     { name: "Vision", href: "#vision" },
     { name: "Technical", href: "#technical" },
     { name: "Where AI.FO Starts", href: "#wedge" },
-    { name: "For You", href: "#for-you" },
   ];
 
   return (

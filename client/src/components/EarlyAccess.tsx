@@ -64,7 +64,7 @@ export default function EarlyAccess() {
         setErrorMessage(json.error || null);
       }
     } catch {
-      setErrorMessage(null);
+      setErrorMessage("connection-error");
     } finally {
       setIsSubmitting(false);
     }
@@ -169,7 +169,7 @@ export default function EarlyAccess() {
                       name="companySize"
                       render={({ field }) => (
                         <FormItem>
-                          <FormLabel className="text-white/80 font-medium">Company Size (Optional)</FormLabel>
+                          <FormLabel className="text-white/80 font-medium">Annual Revenue (Optional)</FormLabel>
                           <Select onValueChange={field.onChange} defaultValue={field.value}>
                             <FormControl>
                               <SelectTrigger className="bg-black border-white/20 focus:ring-accent text-white h-12">
@@ -191,8 +191,11 @@ export default function EarlyAccess() {
 
                     {errorMessage && (
                       <p className="text-sm text-red-400 font-medium">
-                        Something went wrong. Please try again or email{" "}
-                        <a href="mailto:questions@getaifo.com" className="underline underline-offset-2 hover:text-white transition-colors">questions@getaifo.com</a>.
+                        {errorMessage === "connection-error"
+                          ? <>Connection error. Please check your network and try again, or email{" "}
+                              <a href="mailto:questions@getaifo.com" className="underline underline-offset-2 hover:text-white transition-colors">questions@getaifo.com</a>.</>
+                          : <>Something went wrong. Please try again or email{" "}
+                              <a href="mailto:questions@getaifo.com" className="underline underline-offset-2 hover:text-white transition-colors">questions@getaifo.com</a>.</>}
                       </p>
                     )}
 

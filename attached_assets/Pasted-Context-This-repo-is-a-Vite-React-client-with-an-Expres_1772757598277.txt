@@ -1,0 +1,130 @@
+Context:
+This repo is a Vite + React client with an Express-style server (client/ + server/). Implement the following changes with minimal disruption. Do NOT add new dependencies. Preserve the dark, minimal, CFO-grade design language.
+
+CHANGE 1) REMOVE "WHO THIS IS FOR" SECTION
+
+Goal:
+Remove the "WhoThisIsFor" section entirely to tighten page flow.
+
+Steps:
+- In client/src/pages/home.tsx, remove the import for WhoThisIsFor.
+- Remove the <WhoThisIsFor /> JSX block from the page.
+- In client/src/components/Nav.tsx, remove the nav link:
+  { name: "For You", href: "#for-you" }
+
+Final page order should be:
+Hero → HowItWorks → WhoWhy → Problem → ExistingTools → WhyNow → ProductVision → TechnicalChallenge → Wedge → EarlyAccess → Footer
+
+Do not delete WhoThisIsFor.tsx unless desired, but it must not be imported or rendered anywhere.
+
+CHANGE 2) DELETE DEAD SCAFFOLD COMPONENTS
+
+Goal:
+Remove leftover Replit scaffold files that are not used anywhere in the app.
+
+Steps:
+- Confirm neither file is referenced in any import or render.
+- Delete client/src/components/Navbar.tsx
+- Delete client/src/components/Features.tsx
+
+Navbar.tsx currently renders a Next.js-style logo and Deploy button and should not remain in the codebase.
+Features.tsx is also unused scaffold code and should be removed.
+
+CHANGE 3) EARLY ACCESS FORM — FIX SILENT NETWORK ERROR
+
+Goal:
+The existing form already has isSubmitting, isSuccess, and errorMessage states. One remaining bug is that the catch block sets errorMessage to null instead of showing an error, so network failures are silent.
+
+File:
+client/src/components/EarlyAccess.tsx
+
+Fix:
+Replace the current catch block so that it sets this exact error message:
+
+"Connection error. Please check your network and try again, or email questions@getaifo.com."
+
+Also:
+- Make questions@getaifo.com a mailto link wherever the error is rendered, if the existing component structure allows it cleanly.
+- Rename the field label from:
+  "Company Size (Optional)"
+  to:
+  "Annual Revenue (Optional)"
+because the dropdown options are revenue ranges, not team size.
+
+Do not otherwise redesign the form.
+
+CHANGE 4) SHARPEN HERO COPY + FIX MOTION BUG
+
+File:
+client/src/components/Hero.tsx
+
+4a — Update copy
+
+Replace the hero copy with:
+
+Headline:
+Financial judgment for organizations without a CFO.
+
+Subhead:
+AI.FO turns accounting and operational data into forward-looking decisions leaders can act on.
+
+Supporting line:
+Decision-ready reasoning — without CFO headcount.
+
+Do not change layout, structure, or CTA buttons.
+
+4b — Fix motion bug
+
+The visual panel motion.div currently has duplicated opacity properties in initial and animate.
+
+Fix:
+- initial should be: { opacity: 0 }
+- animate should be: { opacity: 1 }
+
+Remove any duplicate opacity keys.
+
+CHANGE 5) ADD SEO META TAGS
+
+File:
+client/index.html
+
+Update the SEO/social meta tags in the head section.
+
+Requirements:
+- Keep the favicon line unchanged.
+- Keep required structural tags like charset and viewport.
+- Remove Replit-specific OG/Twitter references.
+- Use the following values:
+
+<title>AI.FO — Financial judgment without CFO headcount</title>
+
+<meta name="description" content="AI.FO turns accounting and operational data into decision-ready financial judgment for organizations under $50M." />
+
+<meta property="og:title" content="AI.FO — Financial judgment without CFO headcount" />
+<meta property="og:description" content="AI.FO turns accounting and operational data into decision-ready financial judgment for organizations under $50M." />
+<meta property="og:type" content="website" />
+<meta property="og:url" content="https://getaifo.com" />
+<meta property="og:image" content="/opengraph.jpg" />
+
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:title" content="AI.FO — Financial judgment without CFO headcount" />
+<meta name="twitter:description" content="AI.FO turns accounting and operational data into decision-ready financial judgment for organizations under $50M." />
+<meta name="twitter:image" content="/opengraph.jpg" />
+
+opengraph.jpg already exists at client/public/opengraph.jpg.
+
+DELIVERABLE CHECKLIST
+
+Before finishing, confirm all of the following:
+- WhoThisIsFor is not imported or rendered in home.tsx
+- The #for-you nav link is removed from Nav.tsx
+- Navbar.tsx and Features.tsx are deleted
+- The catch block in EarlyAccess.tsx sets a real error message on network failure
+- The field label reads "Annual Revenue" in EarlyAccess.tsx
+- The Hero headline reads: "Financial judgment for organizations without a CFO."
+- The Hero subhead reads: "AI.FO turns accounting and operational data into forward-looking decisions leaders can act on."
+- The Hero supporting line reads: "Decision-ready reasoning — without CFO headcount."
+- The Hero visual motion.div has no duplicate opacity props
+- client/index.html contains the updated title, description, Open Graph, and Twitter tags with no Replit references
+- No new dependencies were added
+- The page still builds and renders without errors

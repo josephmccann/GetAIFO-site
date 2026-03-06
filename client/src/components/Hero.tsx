@@ -18,15 +18,15 @@ export default function Hero() {
           </p>
           <div className="mb-6">
             <h1 className="font-display text-5xl sm:text-6xl md:text-7xl lg:text-8xl tracking-tight text-white mb-2" data-testid="hero-heading">
-              Turning financial data into decision-ready judgment.
+              Financial judgment for organizations without a CFO.
             </h1>
             <div className="w-24 h-1 bg-accent rounded-full mt-6"></div>
           </div>
           <p className="font-body text-base md:text-lg leading-relaxed text-white/70 mb-2 max-w-xl" data-testid="hero-subhead">
-            An AI-powered CFO layer that translates messy financial signals into narrative, forward-looking decisions while preserving human accountability.
+            AI.FO turns accounting and operational data into forward-looking decisions leaders can act on.
           </p>
           <p className="font-body text-base md:text-lg leading-relaxed text-white/45 mb-10 max-w-xl">
-            CFO-level financial reasoning — without the CFO headcount.
+            Decision-ready reasoning — without CFO headcount.
           </p>
           <div className="flex flex-col sm:flex-row gap-4">
             <a href="#early-access" className="btn-primary" data-testid="hero-btn-primary">
@@ -40,8 +40,8 @@ export default function Hero() {
 
         {/* Abstract Visual Panel */}
         <motion.div
-          initial={{ opacity: 0, opacity: 0 }}
-          animate={{ opacity: 1, opacity: 1 }}
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
           transition={{ duration: 1, delay: 0.2 }}
           className="hidden lg:block relative h-[500px] w-full"
         >

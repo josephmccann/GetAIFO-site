@@ -8,7 +8,6 @@ import WhyNow from "@/components/WhyNow";
 import ProductVision from "@/components/ProductVision";
 import TechnicalChallenge from "@/components/TechnicalChallenge";
 import Wedge from "@/components/Wedge";
-import WhoThisIsFor from "@/components/WhoThisIsFor";
 import EarlyAccess from "@/components/EarlyAccess";
 import Footer from "@/components/Footer";
 
@@ -26,7 +25,6 @@ export default function Home() {
         <ProductVision />
         <TechnicalChallenge />
         <Wedge />
-        <WhoThisIsFor />
         <EarlyAccess />
       </main>
       <Footer />
