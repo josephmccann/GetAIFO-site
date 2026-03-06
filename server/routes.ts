@@ -7,6 +7,7 @@ const waitlistSchema = z.object({
   name: z.string().min(1).max(500).transform((s) => s.trim()),
   email: z.string().email().max(500).transform((s) => s.trim().toLowerCase()),
   companySize: z.string().max(500).optional().default(""),
+  accountingSystem: z.string().max(500).optional().default(""),
   companyWebsite: z.string().max(500).optional().default(""),
 });
 
@@ -36,7 +37,7 @@ export async function registerRoutes(
         });
       }
 
-      const { name, email, companySize, companyWebsite } = parsed.data;
+      const { name, email, companySize, accountingSystem, companyWebsite } = parsed.data;
 
       // Honeypot: if filled, silently accept without sending to Airtable
       if (companyWebsite) {
@@ -69,6 +70,7 @@ export async function registerRoutes(
                   Name: name,
                   Email: email,
                   "Company Size": companySize || "",
+                  "Accounting System": accountingSystem || "",
                   "Submitted At": new Date().toISOString(),
                 },
               },

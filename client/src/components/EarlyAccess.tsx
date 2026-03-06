@@ -12,6 +12,7 @@ const waitlistSchema = z.object({
   name: z.string().min(2, "Name is required"),
   email: z.string().email("Valid email is required"),
   companySize: z.string().optional(),
+  accountingSystem: z.string().optional(),
   companyWebsite: z.string().optional(),
 });
 
@@ -41,6 +42,7 @@ export default function EarlyAccess() {
       name: "",
       email: "",
       companySize: "",
+      accountingSystem: "",
       companyWebsite: "",
     },
   });
@@ -182,6 +184,33 @@ export default function EarlyAccess() {
                               <SelectItem value="5m_20m" className="focus:bg-accent/20 focus:text-accent">$5M–$20M</SelectItem>
                               <SelectItem value="20m_50m" className="focus:bg-accent/20 focus:text-accent">$20M–$50M</SelectItem>
                               <SelectItem value="over_50m" className="focus:bg-accent/20 focus:text-accent">Over $50M</SelectItem>
+                            </SelectContent>
+                          </Select>
+                          <FormMessage className="text-destructive font-medium" />
+                        </FormItem>
+                      )}
+                    />
+
+                    <FormField
+                      control={form.control}
+                      name="accountingSystem"
+                      render={({ field }) => (
+                        <FormItem>
+                          <FormLabel className="text-white/80 font-medium">Accounting System (Optional)</FormLabel>
+                          <Select onValueChange={field.onChange} defaultValue={field.value}>
+                            <FormControl>
+                              <SelectTrigger className="bg-black border-white/20 focus:ring-accent text-white h-12">
+                                <SelectValue placeholder="Select system" className="text-white/70" />
+                              </SelectTrigger>
+                            </FormControl>
+                            <SelectContent className="bg-zinc-900 border-white/20 text-white">
+                              <SelectItem value="quickbooks" className="focus:bg-accent/20 focus:text-accent">QuickBooks</SelectItem>
+                              <SelectItem value="xero" className="focus:bg-accent/20 focus:text-accent">Xero</SelectItem>
+                              <SelectItem value="netsuite" className="focus:bg-accent/20 focus:text-accent">NetSuite</SelectItem>
+                              <SelectItem value="sage" className="focus:bg-accent/20 focus:text-accent">Sage</SelectItem>
+                              <SelectItem value="freshbooks" className="focus:bg-accent/20 focus:text-accent">FreshBooks</SelectItem>
+                              <SelectItem value="wave" className="focus:bg-accent/20 focus:text-accent">Wave</SelectItem>
+                              <SelectItem value="other" className="focus:bg-accent/20 focus:text-accent">Other</SelectItem>
                             </SelectContent>
                           </Select>
                           <FormMessage className="text-destructive font-medium" />
