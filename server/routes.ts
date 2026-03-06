@@ -69,7 +69,7 @@ export async function registerRoutes(
                 fields: {
                   Name: name,
                   Email: email,
-                  "Company Size": companySize || "",
+                  "Annual Revenue": companySize || "",
                   "Accounting System": accountingSystem || "",
                   "Submitted At": new Date().toISOString(),
                 },
