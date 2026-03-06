@@ -22,6 +22,19 @@ app.use(
 
 app.use(express.urlencoded({ extended: false }));
 
+app.use((req, res, next) => {
+  const p = decodeURIComponent(req.path).toLowerCase();
+  if (
+    p.includes("/.") ||
+    p.endsWith(".env") ||
+    p.includes("/config.env") ||
+    (p.startsWith("/api/") && p !== "/api/waitlist")
+  ) {
+    return res.status(404).send("Not found");
+  }
+  next();
+});
+
 export function log(message: string, source = "express") {
   const formattedTime = new Date().toLocaleTimeString("en-US", {
     hour: "numeric",

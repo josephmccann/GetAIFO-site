@@ -36,7 +36,7 @@ export default function HowItWorks() {
                 {/* Desktop Arrow Connector */}
                 {i < steps.length - 1 && (
                   <div className="hidden md:flex absolute top-1/2 -right-3 w-6 h-6 text-white/20 -translate-y-1/2 translate-x-1/2 bg-[#0a0a0a] rounded-full items-center justify-center border border-white/10 z-20">
-                    <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinelinejoin="round">
+                    <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
                       <path d="M5 12h14m-7-7 7 7-7 7"/>
                     </svg>
                   </div>
