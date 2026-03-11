@@ -22,6 +22,10 @@ app.use(
 
 app.use(express.urlencoded({ extended: false }));
 
+app.get("/health", (_req, res) => {
+  res.status(200).send("ok");
+});
+
 app.use((req, res, next) => {
   const p = decodeURIComponent(req.path).toLowerCase();
   if (
