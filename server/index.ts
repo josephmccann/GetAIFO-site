@@ -6,6 +6,8 @@ import { createServer } from "http";
 const app = express();
 const httpServer = createServer(app);
 
+let appReady = false;
+
 declare module "http" {
   interface IncomingMessage {
     rawBody: unknown;
@@ -24,6 +26,13 @@ app.use(express.urlencoded({ extended: false }));
 
 app.get("/health", (_req, res) => {
   res.status(200).send("ok");
+});
+
+app.use((req, res, next) => {
+  if (!appReady && req.path === "/") {
+    return res.status(200).send("<!DOCTYPE html><html><head><meta http-equiv='refresh' content='2'></head><body>Loading...</body></html>");
+  }
+  next();
 });
 
 app.use((req, res, next) => {
@@ -101,6 +110,8 @@ app.use((req, res, next) => {
     const { setupVite } = await import("./vite");
     await setupVite(httpServer, app);
   }
+
+  appReady = true;
 
   // ALWAYS serve the app on the port specified in the environment variable PORT
   // Other ports are firewalled. Default to 5000 if not specified.

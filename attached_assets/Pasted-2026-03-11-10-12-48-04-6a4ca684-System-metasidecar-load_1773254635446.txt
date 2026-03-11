@@ -1,0 +1,144 @@
+2026-03-11 10:12:48.04
+6a4ca684
+System
+metasidecar: loaded enterprise status from environment is_enterprise=false
+2026-03-11 10:12:48.04
+6a4ca684
+System
+forwarding local port 5000 to external port 80 (mapped as 1104)
+2026-03-11 10:12:48.04
+6a4ca684
+System
+healthcheck failed error=healthcheck /: Get "http://127.0.0.1:1104/": dial tcp 127.0.0.1:1104: connect: connection refused
+2026-03-11 10:12:48.04
+6a4ca684
+System
+healthcheck failed error=healthcheck / returned status 500
+2026-03-11 10:12:48.06
+6a4ca684
+System
+healthcheck failed error=healthcheck / returned status 500
+2026-03-11 10:12:48.08
+6a4ca684
+System
+healthcheck failed error=healthcheck / returned status 500
+2026-03-11 10:12:48.12
+6a4ca684
+System
+healthcheck failed error=healthcheck / returned status 500
+2026-03-11 10:12:48.16
+6a4ca684
+System
+healthcheck failed error=healthcheck / returned status 500
+2026-03-11 10:12:48.30
+6a4ca684
+System
+healthcheck failed error=healthcheck / returned status 500
+2026-03-11 10:12:48.31
+6a4ca684
+System
+healthcheck failed error=healthcheck / returned status 500
+2026-03-11 10:12:48.37
+6a4ca684
+User
+5:12:48 PM [express] serving on port 5000
+2026-03-11 10:32:04.90
+6a4ca684
+System
+system: received signal terminated
+2026-03-11 10:32:04.91
+6a4ca684
+System
+command finished with error [node ./dist/index.cjs]: signal: terminated
+2026-03-11 10:32:04.91
+6a4ca684
+System
+main done, exiting
+2026-03-11 10:35:43.78
+6a4ca684
+System
+starting up user application
+2026-03-11 10:35:43.79
+6a4ca684
+System
+metasidecar: loaded enterprise status from environment is_enterprise=false
+2026-03-11 10:35:43.79
+6a4ca684
+System
+forwarding local port 5000 to external port 80 (mapped as 1104)
+2026-03-11 10:35:43.79
+6a4ca684
+System
+healthcheck failed error=healthcheck /: Get "http://127.0.0.1:1104/": dial tcp 127.0.0.1:1104: connect: connection refused
+2026-03-11 10:35:43.80
+6a4ca684
+System
+healthcheck failed error=healthcheck / returned status 500
+2026-03-11 10:35:43.81
+6a4ca684
+System
+healthcheck failed error=healthcheck / returned status 500
+2026-03-11 10:35:43.83
+6a4ca684
+System
+healthcheck failed error=healthcheck / returned status 500
+2026-03-11 10:35:43.89
+6a4ca684
+System
+healthcheck failed error=healthcheck / returned status 500
+2026-03-11 10:35:43.91
+6a4ca684
+System
+healthcheck failed error=healthcheck / returned status 500
+2026-03-11 10:35:43.95
+6a4ca684
+System
+healthcheck failed error=healthcheck / returned status 500
+2026-03-11 10:35:44.20
+6a4ca684
+User
+5:35:44 PM [express] serving on port 5000
+2026-03-11 11:31:22.62
+3e5f2a2a
+System
+starting up user application
+2026-03-11 11:31:22.62
+3e5f2a2a
+System
+forwarding local port 5000 to external port 80 (mapped as 1104)
+2026-03-11 11:31:22.62
+3e5f2a2a
+System
+metasidecar: loaded enterprise status from environment is_enterprise=false
+2026-03-11 11:31:23.40
+3e5f2a2a
+User
+6:31:23 PM [express] serving on port 5000
+2026-03-11 11:31:27.86
+3e5f2a2a
+System
+forwarding local port 5000 to external port 80 (mapped as 1104)
+2026-03-11 11:31:27.86
+3e5f2a2a
+System
+starting up user application
+2026-03-11 11:31:27.86
+3e5f2a2a
+System
+metasidecar: loaded enterprise status from environment is_enterprise=false
+2026-03-11 11:31:28.47
+3e5f2a2a
+User
+6:31:28 PM [express] serving on port 5000
+2026-03-11 11:33:38.09
+6a4ca684
+System
+system: received signal terminated
+2026-03-11 11:33:38.09
+6a4ca684
+System
+command finished with error [node ./dist/index.cjs]: signal: terminated
+2026-03-11 11:33:38.12
+6a4ca684
+System
+main done, exiting
