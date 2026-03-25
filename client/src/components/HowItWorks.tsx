@@ -2,9 +2,9 @@ import { motion } from "framer-motion";
 
 export default function HowItWorks() {
   const steps = [
-    { num: "01", title: "Ingest", desc: "Connect accounting, banking, payroll, and operational signals." },
-    { num: "02", title: "Normalize", desc: "Reconcile messy schemas and link relationships across datasets." },
-    { num: "03", title: "Reason", desc: "Generate narrative guidance tied to hiring, runway, pricing, and risk." }
+    { num: "01", title: "Connect", desc: "Connect QuickBooks, banking, and payroll data. AI.FO ingests GL, bank transactions, accounts receivable, and expense records automatically." },
+    { num: "02", title: "Detect", desc: "The deterministic engine runs 26+ financial signals across 5 categories: Liquidity, Revenue, Margin, Working Capital, and Leverage. Every metric is formula-based, auditable, and repeatable." },
+    { num: "03", title: "Act", desc: "Receive plain-language intelligence briefs, constraint rankings, scenario models, and CFO-ready memos — not charts, not dashboards, but the judgment layer that tells you what to do and when." }
   ];
 
   return (

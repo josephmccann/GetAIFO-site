@@ -1,22 +1,22 @@
 import { motion } from "framer-motion";
 
 export default function ExistingTools() {
-  const cards = [
+  const comparisons = [
     {
-      title: "Dashboards surface metrics",
-      desc: "— but lack context, prioritization, and the \"so what.\""
+      existing: "Dashboards surface metrics",
+      aifo: "AI.FO surfaces constraints — ranked, explained, with time horizons"
     },
     {
-      title: "Fractional advisory is episodic",
-      desc: "— not continuous. Insight arrives between decisions, not during them."
+      existing: "Fractional advisory is episodic",
+      aifo: "AI.FO runs continuously — every data sync, every month"
     },
     {
-      title: "Accounting systems are backward-looking",
-      desc: "— they record what happened; they don't interpret it."
+      existing: "Accounting systems are backward-looking",
+      aifo: "AI.FO projects forward — runway, scenarios, risk windows"
     },
     {
-      title: "FP&A tools are heavyweight and slow",
-      desc: "— built for finance teams that don't exist yet at this stage."
+      existing: "FP&A tools are heavyweight and slow",
+      aifo: "AI.FO needs one CSV upload or QuickBooks connection"
     }
   ];
 
@@ -31,28 +31,23 @@ export default function ExistingTools() {
         </div>
 
         <div className="grid md:grid-cols-2 gap-6 mb-16">
-          {cards.map((card, i) => (
-            <motion.div 
+          {comparisons.map((item, i) => (
+            <motion.div
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ delay: i * 0.1, duration: 0.5 }}
-              key={i} 
-              className="card-dark"
+              key={i}
+              className="card-dark space-y-4"
             >
+              <p className="text-lg text-white/50 line-through decoration-white/20">
+                {item.existing}
+              </p>
               <p className="text-lg">
-                <strong className="text-white font-body">{card.title}</strong> {card.desc}
+                <strong className="text-accent font-body">{item.aifo}</strong>
               </p>
             </motion.div>
           ))}
-        </div>
-      </div>
-
-      <div className="w-full bg-accent/10 border-y border-accent/20 py-8">
-        <div className="container-custom text-center">
-          <h3 className="text-2xl md:text-3xl text-accent font-body font-medium">
-            Net effect: more data — less clarity when it matters most.
-          </h3>
         </div>
       </div>
     </section>

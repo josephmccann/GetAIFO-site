@@ -4,15 +4,15 @@ export default function Problem() {
   const cards = [
     {
       title: "The gap is structural.",
-      desc: "A full-time CFO is often unavailable, unaffordable, or premature. Founders and operators absorb CFO responsibilities by default."
+      desc: "A full-time CFO is often unavailable, unaffordable, or premature. Founders and operators absorb CFO responsibilities by default — without the infrastructure to support them."
     },
     {
       title: "The data exists — judgment doesn't.",
-      desc: "Systems accurately record activity but do not produce synthesis, prioritization, or forward-looking guidance."
+      desc: "Systems accurately record activity but do not produce synthesis, prioritization, or forward-looking guidance. The accounting is accurate. Nobody is connecting the dots."
     },
     {
       title: "The cost is real.",
-      desc: "High-impact decisions — hiring timing, cash runway, pricing, cost structure — are made with incomplete context and elevated risk."
+      desc: "High-impact decisions — hiring timing, cash runway, pricing, cost structure — are made with incomplete context. The gap shows up 9 months before anyone notices."
     }
   ];
 

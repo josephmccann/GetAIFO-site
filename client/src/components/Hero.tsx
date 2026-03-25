@@ -18,22 +18,22 @@ export default function Hero() {
           </p>
           <div className="mb-6">
             <h1 className="font-display text-5xl sm:text-6xl md:text-7xl lg:text-8xl tracking-tight text-white mb-2" data-testid="hero-heading">
-              Financial judgment for organizations without a CFO.
+              Financial judgment that works while you sleep.
             </h1>
             <div className="w-24 h-1 bg-accent rounded-full mt-6"></div>
           </div>
           <p className="font-body text-base md:text-lg leading-relaxed text-white/70 mb-2 max-w-xl" data-testid="hero-subhead">
-            AI.FO turns accounting and operational data into forward-looking decisions leaders can act on.
+            AI.FO connects to your accounting system, detects 26+ financial signals in real time, and produces the kind of forward-looking guidance you'd expect from a CFO — continuously, not quarterly.
           </p>
           <p className="font-body text-base md:text-lg leading-relaxed text-white/45 mb-10 max-w-xl">
-            Decision-ready reasoning — without CFO headcount.
+            No dashboards. No spreadsheets. Decision-ready intelligence, every month.
           </p>
           <div className="flex flex-col sm:flex-row gap-4">
             <a href="#early-access" className="btn-primary" data-testid="hero-btn-primary">
               Join Early Access
             </a>
-            <a href="#wedge" className="btn-secondary" data-testid="hero-btn-secondary">
-              Where AI.FO Starts →
+            <a href="#early-access" className="btn-secondary" data-testid="hero-btn-demo">
+              Try the Live Demo
             </a>
           </div>
         </motion.div>

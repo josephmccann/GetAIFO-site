@@ -81,19 +81,18 @@ export default function EarlyAccess() {
           <div>
             <span className="text-label">EARLY ACCESS</span>
             <h2 className="font-display text-5xl sm:text-6xl md:text-7xl lg:text-8xl tracking-tight text-white mb-6 leading-none">
-              Join the waitlist.
+              Join the first cohort.
             </h2>
             <p className="font-body text-base md:text-lg leading-relaxed text-white/70 max-w-md mb-12">
-              We're selecting 3–5 design partner organizations for early access. We'll reach out personally to schedule a conversation.
+              We are onboarding a small group of organizations to use AI.FO on their real financial data. You get full product access, direct input on what we build next, and a founding-team relationship.
             </p>
 
             <div className="max-w-xl">
-              <p className="uppercase tracking-widest text-xs text-white/45 mb-3">EARLY ACCESS COHORT</p>
               <p className="text-white/70 mb-2">
-                We're onboarding a small group of organizations helping shape the first version of AI.FO.
+                Not a waitlist. Not a demo request. You get the actual product.
               </p>
               <p className="text-white/60 text-sm">
-                Interested in participating? Join the waitlist or contact{" "}
+                Questions? Contact{" "}
                 <a href="mailto:sales@getaifo.com" className="hover:text-white transition-colors underline underline-offset-2">sales@getaifo.com</a>.
               </p>
             </div>
@@ -238,7 +237,7 @@ export default function EarlyAccess() {
                           <Loader2 className="mr-2 h-5 w-5 animate-spin" />
                           Submitting...
                         </>
-                      ) : "Join Early Access"}
+                      ) : "Get Started"}
                     </Button>
                   </form>
                 </Form>
