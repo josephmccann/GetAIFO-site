@@ -56,18 +56,16 @@ export function metaImagesPlugin(): Plugin {
 }
 
 function getDeploymentUrl(): string | null {
-  if (process.env.REPLIT_INTERNAL_APP_DOMAIN) {
-    const url = `https://${process.env.REPLIT_INTERNAL_APP_DOMAIN}`;
-    log('[meta-images] using internal app domain:', url);
+  // Always use the custom domain if available — don't override with Replit internal domains
+  // The canonical domain for AI.FO is getaifo.com
+  if (process.env.CUSTOM_DOMAIN) {
+    const url = `https://${process.env.CUSTOM_DOMAIN}`;
+    log('[meta-images] using custom domain:', url);
     return url;
   }
 
-  if (process.env.REPLIT_DEV_DOMAIN) {
-    const url = `https://${process.env.REPLIT_DEV_DOMAIN}`;
-    log('[meta-images] using dev domain:', url);
-    return url;
-  }
-
+  // Skip Replit domain override — the HTML source already has the correct getaifo.com URLs
+  // Only use Replit domains if no custom domain AND no hardcoded URLs in HTML
   return null;
 }
 
