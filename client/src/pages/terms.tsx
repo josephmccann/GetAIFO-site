@@ -3,7 +3,7 @@ import Footer from "@/components/Footer";
 
 export default function Terms() {
   return (
-    <div className="min-h-screen bg-black text-white font-body font-light">
+    <div className="min-h-screen bg-[#1E2761] text-white font-body font-light">
       <Nav />
       <main className="pt-32 pb-20">
         <div className="container-custom max-w-3xl">
@@ -11,7 +11,7 @@ export default function Terms() {
           <h1 className="font-display text-5xl md:text-6xl text-white mb-8" data-testid="heading-terms">
             Terms of Use
           </h1>
-          <div className="space-y-6 text-white/70 leading-relaxed">
+          <div className="space-y-6 text-[#CADCFC] leading-relaxed">
             <p>Last updated: {new Date().toLocaleDateString("en-US", { month: "long", year: "numeric" })}</p>
             <p>
               By accessing or using the AI.FO website, you agree to be bound by these terms. If you do not agree, please do not use our website.

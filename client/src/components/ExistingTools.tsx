@@ -21,7 +21,7 @@ export default function ExistingTools() {
   ];
 
   return (
-    <section id="tools" className="section-padding border-t border-white/10">
+    <section id="tools" className="section-padding border-t border-[rgba(202,220,252,0.12)]">
       <div className="container-custom">
         <span className="text-label">THE GAP</span>
         <div className="max-w-3xl mb-16">
@@ -40,7 +40,7 @@ export default function ExistingTools() {
               key={i}
               className="card-dark space-y-4"
             >
-              <p className="text-lg text-white/50 line-through decoration-white/20">
+              <p className="text-lg text-[#8A9CC5] line-through decoration-[#4A5A8A]">
                 {item.existing}
               </p>
               <p className="text-lg">

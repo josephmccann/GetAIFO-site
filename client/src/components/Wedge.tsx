@@ -19,7 +19,7 @@ export default function Wedge() {
   ];
 
   return (
-    <section id="wedge" className="section-padding border-t border-white/10">
+    <section id="wedge" className="section-padding border-t border-[rgba(202,220,252,0.12)]">
       <div className="container-custom">
         <span className="text-label">WHAT'S LIVE</span>
         <div className="mb-16">
@@ -40,7 +40,7 @@ export default function Wedge() {
               {liveItems.map((item, i) => (
                 <li key={i} className="flex gap-4">
                   <div className="text-accent shrink-0 font-bold mt-0.5">&#10003;</div>
-                  <p className="text-base text-white/90">{item}</p>
+                  <p className="text-base text-white">{item}</p>
                 </li>
               ))}
             </ul>
@@ -57,8 +57,8 @@ export default function Wedge() {
             <ul className="space-y-6">
               {comingNext.map((item, i) => (
                 <li key={i} className="flex gap-4">
-                  <div className="w-1.5 h-1.5 bg-white/30 rounded-full mt-2.5 shrink-0" />
-                  <p className="text-lg text-white/60">{item}</p>
+                  <div className="w-1.5 h-1.5 bg-[#6B7DB0] rounded-full mt-2.5 shrink-0" />
+                  <p className="text-lg text-[#8A9CC5]">{item}</p>
                 </li>
               ))}
             </ul>

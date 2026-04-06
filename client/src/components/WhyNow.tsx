@@ -8,7 +8,7 @@ export default function WhyNow() {
   ];
 
   return (
-    <section id="why-now" className="section-padding border-t border-white/10">
+    <section id="why-now" className="section-padding border-t border-[rgba(202,220,252,0.12)]">
       <div className="container-custom">
         <span className="text-label">WHY NOW</span>
         <div className="max-w-3xl mb-16">
@@ -30,7 +30,7 @@ export default function WhyNow() {
               <div className="mt-1 w-8 h-8 rounded-full bg-accent/20 border border-accent flex items-center justify-center shrink-0">
                 <span className="text-accent font-display font-bold text-lg">{i + 1}</span>
               </div>
-              <p className="text-xl md:text-2xl text-white/80 font-body">
+              <p className="text-xl md:text-2xl text-[#CADCFC] font-body">
                 {point}
               </p>
             </motion.div>

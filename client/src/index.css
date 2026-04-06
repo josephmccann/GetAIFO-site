@@ -39,25 +39,26 @@ html {
 }
 
 :root {
-  --background: 0 0% 0%;
-  --foreground: 0 0% 100%;
-  --card: 0 0% 4%;
+  /* ── AI.FO Navy Rebrand ── */
+  --background: 232 53% 25%;         /* #1E2761 — void */
+  --foreground: 0 0% 100%;           /* #FFFFFF — text-1 */
+  --card: 232 52% 27%;               /* #212B68 — base */
   --card-foreground: 0 0% 100%;
-  --popover: 0 0% 4%;
+  --popover: 232 52% 27%;            /* #212B68 — base */
   --popover-foreground: 0 0% 100%;
-  --primary: 30 100% 40%;
-  --primary-foreground: 0 0% 0%;
-  --secondary: 0 0% 10%;
+  --primary: 30 100% 40%;            /* #CC6600 — orange accent */
+  --primary-foreground: 0 0% 100%;
+  --secondary: 231 50% 29%;          /* #253070 — surface */
   --secondary-foreground: 0 0% 100%;
-  --muted: 0 0% 15%;
-  --muted-foreground: 0 0% 45%;
-  --accent: 30 100% 40%;
+  --muted: 232 48% 32%;              /* #2A3578 — raised */
+  --muted-foreground: 222 34% 66%;   /* #8A9CC5 — text-3 */
+  --accent: 30 100% 40%;             /* #CC6600 — orange accent */
   --accent-hover: 30 100% 44%;
-  --accent-foreground: 0 0% 0%;
+  --accent-foreground: 0 0% 100%;
   --destructive: 0 84.2% 60.2%;
   --destructive-foreground: 0 0% 100%;
-  --border: 0 0% 10%;
-  --input: 0 0% 10%;
+  --border: 230 39% 39%;             /* #3D4A8A — border */
+  --input: 230 39% 39%;              /* #3D4A8A — border */
   --ring: 30 100% 40%;
   --radius: 0.5rem;
 }
@@ -67,13 +68,13 @@ html {
     @apply border-border;
   }
   body {
-    @apply bg-black text-white font-body antialiased selection:bg-accent selection:text-black;
+    @apply bg-background text-white font-body antialiased selection:bg-accent selection:text-white;
   }
   h1, h2, h3, h4, h5, h6 {
     @apply font-display tracking-wider font-normal;
   }
   p {
-    @apply text-white/70 leading-relaxed font-body;
+    @apply text-[#CADCFC] leading-relaxed font-body;
   }
 }
 
@@ -87,17 +88,17 @@ html {
 }
 
 .text-label {
-  @apply text-xs uppercase tracking-widest text-white/45 mb-6 block;
+  @apply text-xs uppercase tracking-widest text-[#8A9CC5] mb-6 block;
 }
 
 .card-dark {
-  @apply bg-white/[0.04] border border-white/10 rounded-lg p-6 md:p-8;
+  @apply bg-[rgba(202,220,252,0.06)] border border-[rgba(202,220,252,0.12)] rounded-lg p-6 md:p-8;
 }
 
 .btn-primary {
-  @apply bg-accent text-black font-semibold rounded-md px-6 py-3 hover:bg-accent-hover transition-colors inline-flex items-center justify-center text-center focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2 focus-visible:ring-offset-black;
+  @apply bg-accent text-white font-semibold rounded-md px-6 py-3 hover:bg-accent-hover transition-colors inline-flex items-center justify-center text-center focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2 focus-visible:ring-offset-background;
 }
 
 .btn-secondary {
-  @apply border border-accent text-white font-semibold rounded-md px-6 py-3 hover:bg-accent hover:text-black transition-colors inline-flex items-center justify-center text-center focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2 focus-visible:ring-offset-black;
+  @apply border border-accent text-white font-semibold rounded-md px-6 py-3 hover:bg-accent hover:text-white transition-colors inline-flex items-center justify-center text-center focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2 focus-visible:ring-offset-background;
 }

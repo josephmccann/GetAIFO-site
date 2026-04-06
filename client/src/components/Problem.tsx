@@ -17,14 +17,14 @@ export default function Problem() {
   ];
 
   return (
-    <section id="problem" className="section-padding border-t border-white/10">
+    <section id="problem" className="section-padding border-t border-[rgba(202,220,252,0.12)]">
       <div className="container-custom">
         <span className="text-label">THE PROBLEM</span>
         <div className="max-w-3xl mb-16">
           <h2 className="text-5xl md:text-6xl text-white mb-6 leading-tight">
             CFO-level decisions begin far earlier than CFO-level staffing.
           </h2>
-          <p className="text-xl md:text-2xl text-white/60">
+          <p className="text-xl md:text-2xl text-[#8A9CC5]">
             Organizations under $50M face increasing financial complexity without the leadership infrastructure to manage it.
           </p>
         </div>

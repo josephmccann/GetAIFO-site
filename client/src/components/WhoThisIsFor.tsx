@@ -20,7 +20,7 @@ export default function WhoThisIsFor() {
   ];
 
   return (
-    <section id="for-you" className="section-padding border-t border-white/10">
+    <section id="for-you" className="section-padding border-t border-[rgba(202,220,252,0.12)]">
       <div className="container-custom">
         <span className="text-label">WHO THIS IS FOR</span>
         <div className="mb-16">
@@ -46,7 +46,7 @@ export default function WhoThisIsFor() {
           ))}
         </div>
 
-        <div className="text-center max-w-3xl mx-auto py-8 px-6 border border-white/10 rounded-lg bg-white/[0.02]">
+        <div className="text-center max-w-3xl mx-auto py-8 px-6 border border-[rgba(202,220,252,0.12)] rounded-lg bg-[rgba(202,220,252,0.04)]">
           <h3 className="text-xl md:text-2xl text-white font-body font-medium">
             "If you're making high-stakes financial decisions without a CFO in the room — AI.FO was built for you."
           </h3>
