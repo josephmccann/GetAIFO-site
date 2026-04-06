@@ -73,34 +73,34 @@ export default function Hero() {
             <motion.div 
               animate={{ y: [0, -10, 0] }} 
               transition={{ repeat: Infinity, duration: 4, ease: "easeInOut" }}
-              className="absolute top-[15%] left-[5%] lg:top-[20%] lg:left-[10%] bg-[#1E2761]/80 backdrop-blur border border-accent/30 rounded-full px-3 py-1.5 lg:px-4 lg:py-2"
+              className="absolute top-[15%] left-[5%] lg:top-[20%] lg:left-[10%] bg-[#0A1A2F]/90 backdrop-blur border border-[#4ADE80]/30 rounded-full px-3 py-1.5 lg:px-4 lg:py-2 shadow-lg shadow-[#4ADE80]/5"
             >
-              <span className="text-accent font-medium text-xs lg:text-sm">Runway: 11 months</span>
+              <span className="text-[#4ADE80] font-semibold text-xs lg:text-sm">Runway: 11 months</span>
             </motion.div>
 
             <motion.div 
               animate={{ y: [0, 10, 0] }} 
               transition={{ repeat: Infinity, duration: 5, ease: "easeInOut", delay: 1 }}
-              className="absolute top-[35%] right-[5%] lg:top-[40%] lg:right-[15%] bg-[#1E2761]/80 backdrop-blur border border-accent/30 rounded-full px-3 py-1.5 lg:px-4 lg:py-2"
+              className="absolute top-[35%] right-[5%] lg:top-[40%] lg:right-[15%] bg-[#0A1A2F]/90 backdrop-blur border border-[#F87171]/30 rounded-full px-3 py-1.5 lg:px-4 lg:py-2 shadow-lg shadow-[#F87171]/5"
             >
-              <span className="text-accent font-medium text-xs lg:text-sm">Burn ↑ 22%</span>
+              <span className="text-[#F87171] font-semibold text-xs lg:text-sm">Burn ↑ 22%</span>
             </motion.div>
 
             <motion.div 
               animate={{ y: [0, -8, 0] }} 
               transition={{ repeat: Infinity, duration: 4.5, ease: "easeInOut", delay: 2 }}
-              className="absolute bottom-[30%] left-[20%] lg:left-[30%] bg-[#1E2761]/80 backdrop-blur border border-accent/30 rounded-full px-3 py-1.5 lg:px-4 lg:py-2"
+              className="absolute bottom-[30%] left-[20%] lg:left-[30%] bg-[#0A1A2F]/90 backdrop-blur border border-[#60A5FA]/30 rounded-full px-3 py-1.5 lg:px-4 lg:py-2 shadow-lg shadow-[#60A5FA]/5"
             >
-              <span className="text-accent font-medium text-xs lg:text-sm">Margin: 38%</span>
+              <span className="text-[#60A5FA] font-semibold text-xs lg:text-sm">Margin: 38%</span>
             </motion.div>
 
             <motion.div 
               animate={{ y: [0, 5, 0] }} 
               transition={{ repeat: Infinity, duration: 3.5, ease: "easeInOut", delay: 0.5 }}
-              className="absolute bottom-[10%] right-[10%] lg:bottom-[15%] lg:right-[25%] bg-[#1E2761]/80 backdrop-blur border border-accent/30 rounded-full px-3 py-1.5 lg:px-4 lg:py-2 flex items-center gap-2"
+              className="absolute bottom-[10%] right-[10%] lg:bottom-[15%] lg:right-[25%] bg-[#0A1A2F]/90 backdrop-blur border border-[#FBBF24]/30 rounded-full px-3 py-1.5 lg:px-4 lg:py-2 flex items-center gap-2 shadow-lg shadow-[#FBBF24]/5"
             >
-              <div className="w-2 h-2 rounded-full bg-accent animate-pulse" />
-              <span className="text-accent font-medium text-xs lg:text-sm">Variance detected</span>
+              <div className="w-2 h-2 rounded-full bg-[#FBBF24] animate-pulse" />
+              <span className="text-[#FBBF24] font-semibold text-xs lg:text-sm">Variance detected</span>
             </motion.div>
           </div>
         </motion.div>
