@@ -45,28 +45,38 @@ export default function Hero() {
           transition={{ duration: 1, delay: 0.2 }}
           className="relative h-[300px] lg:h-[500px] w-full"
         >
-          <div className="absolute inset-0 card-dark overflow-hidden flex items-center justify-center border-[rgba(202,220,252,0.08)]">
+          <div className="absolute inset-0 overflow-hidden flex items-center justify-center rounded-lg border border-[rgba(202,220,252,0.1)]" style={{ background: "linear-gradient(145deg, #070E1A 0%, #0C1829 40%, #111E33 100%)" }}>
             {/* SVG Grid */}
-            <svg width="100%" height="100%" xmlns="http://www.w3.org/2000/svg" className="absolute inset-0 opacity-20">
+            <svg width="100%" height="100%" xmlns="http://www.w3.org/2000/svg" className="absolute inset-0 opacity-[0.08]">
               <defs>
                 <pattern id="grid" width="40" height="40" patternUnits="userSpaceOnUse">
-                  <path d="M 40 0 L 0 0 0 40" fill="none" stroke="rgba(255,255,255,0.2)" strokeWidth="1" />
+                  <path d="M 40 0 L 0 0 0 40" fill="none" stroke="rgba(140,180,255,0.5)" strokeWidth="0.5" />
                 </pattern>
               </defs>
               <rect width="100%" height="100%" fill="url(#grid)" />
             </svg>
 
+            {/* Subtle corner glow */}
+            <div className="absolute -bottom-20 -right-20 w-[300px] h-[300px] bg-[#60A5FA]/[0.04] rounded-full blur-[80px] pointer-events-none" />
+            <div className="absolute -top-10 -left-10 w-[200px] h-[200px] bg-accent/[0.03] rounded-full blur-[60px] pointer-events-none" />
+
             {/* Smooth abstract curves */}
             <svg viewBox="0 0 500 400" className="absolute inset-0 w-full h-full" preserveAspectRatio="none">
               <defs>
                 <linearGradient id="trend" x1="0%" y1="100%" x2="100%" y2="0%">
-                  <stop offset="0%" stopColor="#CC6600" stopOpacity="0" />
-                  <stop offset="50%" stopColor="#CC6600" stopOpacity="0.4" />
-                  <stop offset="100%" stopColor="#CC6600" stopOpacity="1" />
+                  <stop offset="0%" stopColor="#60A5FA" stopOpacity="0" />
+                  <stop offset="40%" stopColor="#60A5FA" stopOpacity="0.15" />
+                  <stop offset="70%" stopColor="#CC6600" stopOpacity="0.5" />
+                  <stop offset="100%" stopColor="#CC6600" stopOpacity="0.9" />
+                </linearGradient>
+                <linearGradient id="trendFill" x1="0%" y1="0%" x2="100%" y2="0%">
+                  <stop offset="0%" stopColor="#60A5FA" stopOpacity="0" />
+                  <stop offset="50%" stopColor="#60A5FA" stopOpacity="0.06" />
+                  <stop offset="100%" stopColor="#CC6600" stopOpacity="0.08" />
                 </linearGradient>
               </defs>
-              <path d="M-50,350 Q150,300 250,200 T550,50" fill="none" stroke="url(#trend)" strokeWidth="4" />
-              <path d="M-50,350 Q150,300 250,200 T550,50 L550,450 L-50,450 Z" fill="url(#trend)" opacity="0.1" />
+              <path d="M-50,350 Q150,300 250,200 T550,50" fill="none" stroke="url(#trend)" strokeWidth="3" />
+              <path d="M-50,350 Q150,300 250,200 T550,50 L550,450 L-50,450 Z" fill="url(#trendFill)" />
             </svg>
 
             {/* Floating metric chips */}
