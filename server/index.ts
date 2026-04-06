@@ -38,7 +38,7 @@ app.use((req, res, next) => {
 app.use((req, res, next) => {
   const p = decodeURIComponent(req.path).toLowerCase();
   if (
-    p.includes("/.") ||
+    (p.includes("/.") && !p.includes("/.vite/")) ||
     p.endsWith(".env") ||
     p.includes("/config.env") ||
     (p.startsWith("/api/") && p !== "/api/waitlist")
