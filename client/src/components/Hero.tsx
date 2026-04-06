@@ -45,7 +45,7 @@ export default function Hero() {
           transition={{ duration: 1, delay: 0.2 }}
           className="relative h-[300px] lg:h-[500px] w-full"
         >
-          <div className="absolute inset-0 overflow-hidden flex items-center justify-center rounded-lg border border-[rgba(202,220,252,0.1)]" style={{ background: "linear-gradient(145deg, #070E1A 0%, #0C1829 40%, #111E33 100%)" }}>
+          <div className="absolute inset-0 overflow-hidden flex items-center justify-center rounded-lg border border-[rgba(202,220,252,0.12)]" style={{ background: "linear-gradient(145deg, #121D30 0%, #1A2844 40%, #1E3050 100%)" }}>
             {/* SVG Grid */}
             <svg width="100%" height="100%" xmlns="http://www.w3.org/2000/svg" className="absolute inset-0 opacity-[0.08]">
               <defs>
