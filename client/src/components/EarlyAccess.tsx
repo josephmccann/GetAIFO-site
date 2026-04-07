@@ -58,12 +58,16 @@ export default function EarlyAccess() {
         body: JSON.stringify(data),
       });
 
-      const json = await res.json();
+      const json = await res.json().catch(() => ({}));
 
-      if (json.ok) {
+      if (res.ok && json.ok) {
         setIsSuccess(true);
+      } else if (res.status === 429) {
+        setErrorMessage("rate-limit");
+      } else if (res.status === 400) {
+        setErrorMessage("validation");
       } else {
-        setErrorMessage(json.error || null);
+        setErrorMessage(json.error || "generic");
       }
     } catch {
       setErrorMessage("connection-error");
@@ -113,6 +117,7 @@ export default function EarlyAccess() {
               ) : (
                 <Form {...form}>
                   <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6">
+                    <fieldset disabled={isSubmitting} className="space-y-6 border-0 p-0 m-0 disabled:opacity-70">
                     <div className="hidden" aria-hidden="true">
                       <FormField
                         control={form.control}
@@ -218,12 +223,21 @@ export default function EarlyAccess() {
                     />
 
                     {errorMessage && (
-                      <p className="text-sm text-red-400 font-medium">
-                        {errorMessage === "connection-error"
-                          ? <>Connection error. Please check your network and try again, or email{" "}
-                              <a href="mailto:questions@getaifo.com" className="underline underline-offset-2 hover:text-white transition-colors">questions@getaifo.com</a>.</>
-                          : <>Something went wrong. Please try again or email{" "}
-                              <a href="mailto:questions@getaifo.com" className="underline underline-offset-2 hover:text-white transition-colors">questions@getaifo.com</a>.</>}
+                      <p className="text-sm text-red-400 font-medium" role="alert">
+                        {errorMessage === "connection-error" && (
+                          <>Connection error. Please check your network and try again, or email{" "}
+                            <a href="mailto:questions@getaifo.com" className="underline underline-offset-2 hover:text-white transition-colors">questions@getaifo.com</a>.</>
+                        )}
+                        {errorMessage === "rate-limit" && (
+                          <>Too many requests from this network. Please wait a few minutes and try again.</>
+                        )}
+                        {errorMessage === "validation" && (
+                          <>Please double-check your name and email and try again.</>
+                        )}
+                        {errorMessage !== "connection-error" && errorMessage !== "rate-limit" && errorMessage !== "validation" && (
+                          <>Something went wrong. Please try again or email{" "}
+                            <a href="mailto:questions@getaifo.com" className="underline underline-offset-2 hover:text-white transition-colors">questions@getaifo.com</a>.</>
+                        )}
                       </p>
                     )}
 
@@ -239,6 +253,7 @@ export default function EarlyAccess() {
                         </>
                       ) : "Get Started"}
                     </Button>
+                    </fieldset>
                   </form>
                 </Form>
               )}

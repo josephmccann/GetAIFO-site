@@ -24,6 +24,19 @@ app.use(
 
 app.use(express.urlencoded({ extended: false }));
 
+// ── Startup env validation ──────────────────────────────────────────────────
+// Fail fast if required Airtable credentials are missing so deploys surface
+// the issue immediately instead of on first form submission.
+if (!process.env.AIRTABLE_API_TOKEN || !process.env.AIRTABLE_BASE_ID) {
+  const msg =
+    "[startup] AIRTABLE_API_TOKEN and AIRTABLE_BASE_ID must be set. Waitlist submissions will fail.";
+  if (process.env.NODE_ENV === "production") {
+    console.error(msg);
+    throw new Error(msg);
+  }
+  console.warn(msg);
+}
+
 app.get("/health", (_req, res) => {
   res.status(200).send("ok");
 });

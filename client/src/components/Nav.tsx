@@ -40,7 +40,7 @@ export default function Nav() {
         }`}
       >
         <div className="container-custom flex items-center justify-between">
-          <a href="#" className="flex flex-col focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2 focus-visible:ring-offset-[#1E2761] rounded-sm" data-testid="link-logo" aria-label="AI.FO Home">
+          <a href="/" className="flex flex-col focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2 focus-visible:ring-offset-[#1E2761] rounded-sm" data-testid="link-logo" aria-label="AI.FO Home">
             <span className="font-display text-3xl leading-none">AI.FO</span>
             <div className="h-[2px] w-full bg-accent mt-1 rounded-full"></div>
           </a>

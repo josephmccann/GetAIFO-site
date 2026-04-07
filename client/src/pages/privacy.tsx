@@ -1,7 +1,13 @@
 import Nav from "@/components/Nav";
 import Footer from "@/components/Footer";
+import { usePageMeta } from "@/lib/pageMeta";
 
 export default function Privacy() {
+  usePageMeta({
+    title: "Privacy Policy — AI.FO",
+    description: "How AI.FO collects, uses, and protects the information you share when joining our early access waitlist.",
+    canonical: "https://getaifo.com/privacy",
+  });
   return (
     <div className="min-h-screen bg-[#1E2761] text-white font-body font-light">
       <Nav />

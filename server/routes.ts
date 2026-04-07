@@ -25,7 +25,8 @@ export async function registerRoutes(
       if (isRateLimited(ip)) {
         return res.status(429).json({
           ok: false,
-          error: "Too many requests. Please try again later.",
+          code: "RATE_LIMIT",
+          error: "Too many requests. Please try again in a few minutes.",
         });
       }
 
@@ -33,6 +34,7 @@ export async function registerRoutes(
       if (!parsed.success) {
         return res.status(400).json({
           ok: false,
+          code: "VALIDATION",
           error: "Please provide a valid name and email.",
         });
       }
@@ -51,6 +53,7 @@ export async function registerRoutes(
         console.error("Airtable credentials not configured");
         return res.status(500).json({
           ok: false,
+          code: "SERVICE_UNAVAILABLE",
           error: "Service temporarily unavailable.",
         });
       }
@@ -86,6 +89,7 @@ export async function registerRoutes(
         );
         return res.status(502).json({
           ok: false,
+          code: "UPSTREAM_ERROR",
           error: "Unable to process your request right now. Please try again.",
         });
       }
@@ -95,6 +99,7 @@ export async function registerRoutes(
       console.error("Waitlist route error:", (err as Error).message);
       return res.status(500).json({
         ok: false,
+        code: "INTERNAL_ERROR",
         error: "An unexpected error occurred. Please try again.",
       });
     }

@@ -1,7 +1,13 @@
 import Nav from "@/components/Nav";
 import Footer from "@/components/Footer";
+import { usePageMeta } from "@/lib/pageMeta";
 
 export default function Terms() {
+  usePageMeta({
+    title: "Terms of Use — AI.FO",
+    description: "Terms governing your use of the AI.FO marketing website and early access waitlist.",
+    canonical: "https://getaifo.com/terms",
+  });
   return (
     <div className="min-h-screen bg-[#1E2761] text-white font-body font-light">
       <Nav />
