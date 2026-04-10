@@ -23,7 +23,7 @@ export default function Hero() {
             <div className="w-24 h-1 bg-accent rounded-full mt-6"></div>
           </div>
           <p className="font-body text-base md:text-lg leading-relaxed text-[#CADCFC] mb-2 max-w-xl" data-testid="hero-subhead">
-            AI.FO connects to your accounting system, detects 26+ financial signals in real time, and produces the kind of forward-looking guidance you'd expect from a CFO — continuously, not quarterly.
+            AI.FO connects to your accounting system, detects 38 financial signals in real time, and produces the kind of forward-looking guidance you'd expect from a CFO — continuously, not quarterly.
           </p>
           <p className="font-body text-base md:text-lg leading-relaxed text-[#8A9CC5] mb-10 max-w-xl">
             No dashboards. No spreadsheets. Decision-ready intelligence, every month.
