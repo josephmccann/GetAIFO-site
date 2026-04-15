@@ -4,15 +4,15 @@ export default function ExistingTools() {
   const comparisons = [
     {
       existing: "Dashboards surface metrics",
-      aifo: "AI.FO surfaces constraints — ranked, explained, with time horizons"
+      aifo: "AI.FO surfaces constraints  ranked, explained, with time horizons"
     },
     {
       existing: "Fractional advisory is episodic",
-      aifo: "AI.FO runs continuously — every data sync, every month"
+      aifo: "AI.FO runs continuously  every data sync, every month"
     },
     {
       existing: "Accounting systems are backward-looking",
-      aifo: "AI.FO projects forward — runway, scenarios, risk windows"
+      aifo: "AI.FO projects forward  runway, scenarios, risk windows"
     },
     {
       existing: "FP&A tools are heavyweight and slow",
@@ -21,12 +21,12 @@ export default function ExistingTools() {
   ];
 
   return (
-    <section id="tools" className="section-padding border-t border-[rgba(202,220,252,0.12)]">
+    <section id="tools" className="section-padding border-t border-[#A8B8D8]">
       <div className="container-custom">
         <span className="text-label">THE GAP</span>
         <div className="max-w-3xl mb-16">
-          <h2 className="text-5xl md:text-6xl text-white leading-tight">
-            Today's finance stack optimizes for reporting and compliance — not decision-making.
+          <h2 className="text-5xl md:text-6xl text-[#1E2761] leading-tight">
+            Today's finance stack optimizes for reporting and compliance  not decision-making.
           </h2>
         </div>
 
@@ -40,7 +40,7 @@ export default function ExistingTools() {
               key={i}
               className="card-dark space-y-4"
             >
-              <p className="text-lg text-[#8A9CC5] line-through decoration-[#4A5A8A]">
+              <p className="text-lg line-through" style={{ color: "#8A9CC5", textDecorationColor: "#6B7DB0" }}>
                 {item.existing}
               </p>
               <p className="text-lg">

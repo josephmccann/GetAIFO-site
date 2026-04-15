@@ -4,7 +4,7 @@ export default function WhoThisIsFor() {
   const cards = [
     {
       title: "Small & Mid-Size Businesses",
-      subtitle: "$1M–$50M revenue",
+      subtitle: "$1M$50M revenue",
       desc: "You have a bookkeeper and accounting software. You don't have a CFO. You need one."
     },
     {
@@ -20,23 +20,23 @@ export default function WhoThisIsFor() {
   ];
 
   return (
-    <section id="for-you" className="section-padding border-t border-[rgba(202,220,252,0.12)]">
+    <section id="for-you" className="section-padding border-t border-[#A8B8D8]">
       <div className="container-custom">
         <span className="text-label">WHO THIS IS FOR</span>
         <div className="mb-16">
-          <h2 className="text-5xl md:text-6xl text-white leading-tight max-w-3xl">
+          <h2 className="text-5xl md:text-6xl text-[#1E2761] leading-tight max-w-3xl">
             Built for organizations that have outgrown their financial infrastructure.
           </h2>
         </div>
 
         <div className="grid md:grid-cols-3 gap-6 mb-20">
           {cards.map((card, i) => (
-            <motion.div 
+            <motion.div
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ delay: i * 0.1, duration: 0.5 }}
-              key={i} 
+              key={i}
               className="card-dark border-t-2 border-t-accent pt-6"
             >
               <h3 className="text-white text-xl font-bold font-body tracking-normal mb-1">{card.title}</h3>
@@ -46,9 +46,9 @@ export default function WhoThisIsFor() {
           ))}
         </div>
 
-        <div className="text-center max-w-3xl mx-auto py-8 px-6 border border-[rgba(202,220,252,0.12)] rounded-lg bg-[rgba(202,220,252,0.04)]">
-          <h3 className="text-xl md:text-2xl text-white font-body font-medium">
-            "If you're making high-stakes financial decisions without a CFO in the room — AI.FO was built for you."
+        <div className="text-center max-w-3xl mx-auto py-8 px-6 border border-[#A8B8D8] rounded-lg bg-[rgba(30,39,97,0.04)]">
+          <h3 className="text-xl md:text-2xl text-[#1E2761] font-body font-medium">
+            "If you're making high-stakes financial decisions without a CFO in the room  AI.FO was built for you."
           </h3>
         </div>
       </div>
