@@ -18,14 +18,16 @@ const waitlistSchema = z.object({
 
 type WaitlistValues = z.infer<typeof waitlistSchema>;
 
+type WaitlistResponse = { ok?: boolean; error?: string };
+
 function ContactRow() {
   return (
-    <div className="mt-8 pt-6 border-t border-[rgba(202,220,252,0.12)]">
-      <p className="text-[#8A9CC5] text-sm font-medium mb-3">Contact</p>
-      <div className="flex flex-col sm:flex-row sm:gap-6 gap-2 text-sm text-[#8A9CC5]">
-        <span>Product feedback: <a href="mailto:product@getaifo.com" className="hover:text-white transition-colors">product@getaifo.com</a></span>
-        <span>Early access / pilots: <a href="mailto:sales@getaifo.com" className="hover:text-white transition-colors">sales@getaifo.com</a></span>
-        <span>Investor inquiries: <a href="mailto:investors@getaifo.com" className="hover:text-white transition-colors">investors@getaifo.com</a></span>
+    <div className="mt-8 pt-6 border-t border-[#A8B8D8]">
+      <p className="text-[#4A5578] text-sm font-medium mb-3">Contact</p>
+      <div className="flex flex-col sm:flex-row sm:gap-6 gap-2 text-sm text-[#4A5578]">
+        <span>Product feedback: <a href="mailto:product@getaifo.com" className="hover:text-[#1E2761] transition-colors">product@getaifo.com</a></span>
+        <span>Early access / pilots: <a href="mailto:sales@getaifo.com" className="hover:text-[#1E2761] transition-colors">sales@getaifo.com</a></span>
+        <span>Investor inquiries: <a href="mailto:investors@getaifo.com" className="hover:text-[#1E2761] transition-colors">investors@getaifo.com</a></span>
       </div>
     </div>
   );
@@ -58,7 +60,7 @@ export default function EarlyAccess() {
         body: JSON.stringify(data),
       });
 
-      const json = await res.json().catch(() => ({}));
+      const json: WaitlistResponse = await res.json().catch(() => ({}));
 
       if (res.ok && json.ok) {
         setIsSuccess(true);
@@ -77,27 +79,27 @@ export default function EarlyAccess() {
   }
 
   return (
-    <section id="early-access" className="section-padding border-t border-[rgba(202,220,252,0.12)] relative overflow-hidden">
+    <section id="early-access" className="section-padding border-t border-[#A8B8D8] relative overflow-hidden">
       <div className="absolute bottom-0 right-0 w-[600px] h-[600px] bg-accent/5 rounded-full blur-[150px] pointer-events-none" />
 
       <div className="container-custom relative z-10">
         <div className="grid lg:grid-cols-2 gap-16">
           <div>
             <span className="text-label">EARLY ACCESS</span>
-            <h2 className="font-display text-5xl sm:text-6xl md:text-7xl lg:text-8xl tracking-tight text-white mb-6 leading-none">
+            <h2 className="font-display text-5xl sm:text-6xl md:text-7xl lg:text-8xl tracking-tight text-[#1E2761] mb-6 leading-none">
               Join the first cohort.
             </h2>
-            <p className="font-body text-base md:text-lg leading-relaxed text-[#CADCFC] max-w-md mb-12">
+            <p className="font-body text-base md:text-lg leading-relaxed text-[#1E2761] max-w-md mb-12">
               We are onboarding a small group of organizations to use AI.FO on their real financial data. You get full product access, direct input on what we build next, and a founding-team relationship.
             </p>
 
             <div className="max-w-xl">
-              <p className="text-[#CADCFC] mb-2">
+              <p className="text-[#1E2761] mb-2">
                 Not a waitlist. Not a demo request. You get the actual product.
               </p>
-              <p className="text-[#8A9CC5] text-sm">
+              <p className="text-[#4A5578] text-sm">
                 Questions? Contact{" "}
-                <a href="mailto:sales@getaifo.com" className="hover:text-white transition-colors underline underline-offset-2">sales@getaifo.com</a>.
+                <a href="mailto:sales@getaifo.com" className="text-accent hover:text-[#1E2761] transition-colors underline underline-offset-2">sales@getaifo.com</a>.
               </p>
             </div>
           </div>
@@ -142,7 +144,7 @@ export default function EarlyAccess() {
                           <FormControl>
                             <Input
                               placeholder="Jane Doe"
-                              className="bg-[#1E2761] border-[rgba(202,220,252,0.2)] focus-visible:ring-accent focus-visible:border-accent text-white placeholder:text-[#4A5A8A] h-12"
+                              className="bg-[#2A3578] border-[rgba(202,220,252,0.25)] focus-visible:ring-accent focus-visible:border-accent text-white placeholder:text-[#8A9CC5] h-12"
                               {...field}
                             />
                           </FormControl>
@@ -161,7 +163,7 @@ export default function EarlyAccess() {
                             <Input
                               type="email"
                               placeholder="jane@company.com"
-                              className="bg-[#1E2761] border-[rgba(202,220,252,0.2)] focus-visible:ring-accent focus-visible:border-accent text-white placeholder:text-[#4A5A8A] h-12"
+                              className="bg-[#2A3578] border-[rgba(202,220,252,0.25)] focus-visible:ring-accent focus-visible:border-accent text-white placeholder:text-[#8A9CC5] h-12"
                               {...field}
                             />
                           </FormControl>
@@ -178,15 +180,15 @@ export default function EarlyAccess() {
                           <FormLabel className="text-[#CADCFC] font-medium">Annual Revenue (Optional)</FormLabel>
                           <Select onValueChange={field.onChange} defaultValue={field.value}>
                             <FormControl>
-                              <SelectTrigger className="bg-[#1E2761] border-[rgba(202,220,252,0.2)] focus:ring-accent text-white h-12">
+                              <SelectTrigger className="bg-[#2A3578] border-[rgba(202,220,252,0.25)] focus:ring-accent text-white h-12">
                                 <SelectValue placeholder="Select size" className="text-[#CADCFC]" />
                               </SelectTrigger>
                             </FormControl>
-                            <SelectContent className="bg-[#253070] border-[rgba(202,220,252,0.2)] text-white">
+                            <SelectContent className="bg-[#253070] border-[rgba(202,220,252,0.25)] text-white">
                               <SelectItem value="under_1m" className="focus:bg-accent/20 focus:text-accent">Under $1M</SelectItem>
-                              <SelectItem value="1m_5m" className="focus:bg-accent/20 focus:text-accent">$1M–$5M</SelectItem>
-                              <SelectItem value="5m_20m" className="focus:bg-accent/20 focus:text-accent">$5M–$20M</SelectItem>
-                              <SelectItem value="20m_50m" className="focus:bg-accent/20 focus:text-accent">$20M–$50M</SelectItem>
+                              <SelectItem value="1m_5m" className="focus:bg-accent/20 focus:text-accent">$1M$5M</SelectItem>
+                              <SelectItem value="5m_20m" className="focus:bg-accent/20 focus:text-accent">$5M$20M</SelectItem>
+                              <SelectItem value="20m_50m" className="focus:bg-accent/20 focus:text-accent">$20M$50M</SelectItem>
                               <SelectItem value="over_50m" className="focus:bg-accent/20 focus:text-accent">Over $50M</SelectItem>
                             </SelectContent>
                           </Select>
@@ -203,11 +205,11 @@ export default function EarlyAccess() {
                           <FormLabel className="text-[#CADCFC] font-medium">Accounting System (Optional)</FormLabel>
                           <Select onValueChange={field.onChange} defaultValue={field.value}>
                             <FormControl>
-                              <SelectTrigger className="bg-[#1E2761] border-[rgba(202,220,252,0.2)] focus:ring-accent text-white h-12">
+                              <SelectTrigger className="bg-[#2A3578] border-[rgba(202,220,252,0.25)] focus:ring-accent text-white h-12">
                                 <SelectValue placeholder="Select system" className="text-[#CADCFC]" />
                               </SelectTrigger>
                             </FormControl>
-                            <SelectContent className="bg-[#253070] border-[rgba(202,220,252,0.2)] text-white">
+                            <SelectContent className="bg-[#253070] border-[rgba(202,220,252,0.25)] text-white">
                               <SelectItem value="quickbooks" className="focus:bg-accent/20 focus:text-accent">QuickBooks</SelectItem>
                               <SelectItem value="xero" className="focus:bg-accent/20 focus:text-accent">Xero</SelectItem>
                               <SelectItem value="netsuite" className="focus:bg-accent/20 focus:text-accent">NetSuite</SelectItem>
