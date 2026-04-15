@@ -13,7 +13,7 @@ const Terms = lazy(() => import("@/pages/terms"));
 
 function Router() {
   return (
-    <Suspense fallback={<div className="min-h-screen bg-[#1E2761]" />}>
+    <Suspense fallback={<div className="min-h-screen bg-background" />}>
       <Switch>
         <Route path="/" component={Home} />
         <Route path="/privacy" component={Privacy} />

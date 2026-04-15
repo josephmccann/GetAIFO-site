@@ -34,14 +34,14 @@ export default function Nav() {
 
   return (
     <>
-      <nav 
+      <nav
         className={`fixed top-0 w-full z-50 transition-all duration-300 ${
-          scrolled ? "bg-[#1E2761]/80 backdrop-blur-md border-b border-[rgba(202,220,252,0.08)] py-3" : "bg-transparent py-5"
+          scrolled ? "bg-background/85 backdrop-blur-md border-b border-[rgba(30,39,97,0.12)] py-3" : "bg-transparent py-5"
         }`}
       >
         <div className="container-custom flex items-center justify-between">
-          <a href="/" className="flex flex-col focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2 focus-visible:ring-offset-[#1E2761] rounded-sm" data-testid="link-logo" aria-label="AI.FO Home">
-            <span className="font-display text-3xl leading-none">AI.FO</span>
+          <a href="/" className="flex flex-col focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2 focus-visible:ring-offset-background rounded-sm" data-testid="link-logo" aria-label="AI.FO Home">
+            <span className="font-display text-3xl leading-none text-foreground">AI.FO</span>
             <div className="h-[2px] w-full bg-accent mt-1 rounded-full"></div>
           </a>
 
@@ -49,24 +49,24 @@ export default function Nav() {
           <div className="hidden md:flex items-center gap-4 lg:gap-8">
             <div className="flex items-center gap-4 lg:gap-6">
               {links.map((link) => (
-                <a 
-                  key={link.name} 
+                <a
+                  key={link.name}
                   href={link.href}
-                  className="text-sm lg:text-base font-medium text-[#8A9CC5] hover:text-white transition-colors whitespace-nowrap focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent rounded-sm px-1"
+                  className="text-sm lg:text-base font-medium text-foreground/70 hover:text-accent transition-colors whitespace-nowrap focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent rounded-sm px-1"
                   data-testid={`link-nav-${link.name.toLowerCase().replace(/\s+/g, "-")}`}
                 >
                   {link.name}
                 </a>
               ))}
             </div>
-            <a href="#early-access" className="bg-accent text-white font-semibold rounded px-4 py-2 text-sm hover:bg-accent-hover transition-colors whitespace-nowrap focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2 focus-visible:ring-offset-[#1E2761]" data-testid="btn-nav-early-access">
+            <a href="#early-access" className="bg-accent text-white font-semibold rounded px-4 py-2 text-sm hover:bg-accent-hover transition-colors whitespace-nowrap focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2 focus-visible:ring-offset-background" data-testid="btn-nav-early-access">
               Join Early Access
             </a>
           </div>
 
           {/* Mobile Menu Toggle */}
-          <button 
-            className="md:hidden text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent rounded-md p-1"
+          <button
+            className="md:hidden text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent rounded-md p-1"
             onClick={() => setIsOpen(!isOpen)}
             aria-expanded={isOpen}
             aria-label="Toggle navigation menu"
@@ -84,21 +84,21 @@ export default function Nav() {
               animate={{ opacity: 1, height: "auto" }}
               exit={{ opacity: 0, height: 0 }}
               transition={{ duration: 0.2 }}
-              className="md:hidden bg-[#1E2761]/95 backdrop-blur-lg border-b border-[rgba(202,220,252,0.12)] overflow-hidden absolute w-full"
+              className="md:hidden bg-background/95 backdrop-blur-lg border-b border-[rgba(30,39,97,0.15)] overflow-hidden absolute w-full"
             >
               <div className="flex flex-col p-6 space-y-6">
                 {links.map((link) => (
                   <a
                     key={link.name}
                     href={link.href}
-                    className="text-lg font-medium text-[#CADCFC] hover:text-white"
+                    className="text-lg font-medium text-foreground hover:text-accent"
                     onClick={() => setIsOpen(false)}
                   >
                     {link.name}
                   </a>
                 ))}
-                <a 
-                  href="#early-access" 
+                <a
+                  href="#early-access"
                   className="btn-primary w-full text-center"
                   onClick={() => setIsOpen(false)}
                 >
@@ -117,7 +117,7 @@ export default function Nav() {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
-            className="fixed inset-0 z-40 bg-[#1E2761]/50 md:hidden h-screen"
+            className="fixed inset-0 z-40 bg-foreground/30 md:hidden h-screen"
             onClick={() => setIsOpen(false)}
           />
         )}

@@ -20,34 +20,34 @@ export default function WhoThisIsFor() {
   ];
 
   return (
-    <section id="for-you" className="section-padding border-t border-[rgba(202,220,252,0.12)]">
+    <section id="for-you" className="section-padding border-t border-[rgba(30,39,97,0.12)]">
       <div className="container-custom">
         <span className="text-label">WHO THIS IS FOR</span>
         <div className="mb-16">
-          <h2 className="text-5xl md:text-6xl text-white leading-tight max-w-3xl">
+          <h2 className="text-5xl md:text-6xl text-foreground leading-tight max-w-3xl">
             Built for organizations that have outgrown their financial infrastructure.
           </h2>
         </div>
 
         <div className="grid md:grid-cols-3 gap-6 mb-20">
           {cards.map((card, i) => (
-            <motion.div 
+            <motion.div
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ delay: i * 0.1, duration: 0.5 }}
-              key={i} 
+              key={i}
               className="card-dark border-t-2 border-t-accent pt-6"
             >
               <h3 className="text-white text-xl font-bold font-body tracking-normal mb-1">{card.title}</h3>
               <p className="text-accent text-sm font-semibold tracking-wider uppercase mb-4">{card.subtitle}</p>
-              <p>{card.desc}</p>
+              <p className="text-white/80">{card.desc}</p>
             </motion.div>
           ))}
         </div>
 
-        <div className="text-center max-w-3xl mx-auto py-8 px-6 border border-[rgba(202,220,252,0.12)] rounded-lg bg-[rgba(202,220,252,0.04)]">
-          <h3 className="text-xl md:text-2xl text-white font-body font-medium">
+        <div className="text-center max-w-3xl mx-auto py-8 px-6 border border-[rgba(30,39,97,0.15)] rounded-lg bg-background">
+          <h3 className="text-xl md:text-2xl text-foreground font-body font-medium">
             "If you're making high-stakes financial decisions without a CFO in the room — AI.FO was built for you."
           </h3>
         </div>

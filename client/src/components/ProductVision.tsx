@@ -39,14 +39,14 @@ export default function ProductVision() {
   ];
 
   return (
-    <section id="vision" className="section-padding border-t border-[rgba(202,220,252,0.12)]">
+    <section id="vision" className="section-padding border-t border-[rgba(30,39,97,0.12)]">
       <div className="container-custom">
         <span className="text-label">THE VISION</span>
         <div className="max-w-4xl mb-16">
-          <h2 className="font-display text-3xl md:text-4xl lg:text-5xl text-white mb-6">
+          <h2 className="font-display text-3xl md:text-4xl lg:text-5xl text-foreground mb-6">
             Augmented CFO Judgment.
           </h2>
-          <p className="font-body text-base md:text-lg leading-relaxed text-[#CADCFC]">
+          <p className="font-body text-base md:text-lg leading-relaxed text-foreground">
             An AI-powered CFO layer that sits above your systems of record — ingesting accounting, banking, payroll, and operational data to produce the insight your organization actually needs.
           </p>
         </div>
@@ -56,25 +56,25 @@ export default function ProductVision() {
             {capabilities.map((cap, i) => (
               <div key={i} className="flex items-center gap-4">
                 <div className="w-2 h-2 rounded-full bg-accent shrink-0"></div>
-                <p className="font-body text-base md:text-lg leading-relaxed text-[#CADCFC]">{cap}</p>
+                <p className="font-body text-base md:text-lg leading-relaxed text-foreground">{cap}</p>
               </div>
             ))}
           </div>
 
           <div className="card-dark border-l-4 border-l-accent p-0 overflow-hidden flex flex-col">
-            <div className="bg-[rgba(202,220,252,0.08)] border-b border-[rgba(202,220,252,0.12)] px-6 py-4 flex justify-between items-center">
+            <div className="bg-white/5 border-b border-white/10 px-6 py-4 flex justify-between items-center">
               <span className="font-semibold text-white">AI.FO Financial Brief</span>
-              <span className="text-xs text-[#8A9CC5]">Generated moments ago</span>
+              <span className="text-xs text-white/55">Generated moments ago</span>
             </div>
-            
+
             <div className="p-6 md:p-8 flex-1 flex flex-col">
-              <div className="flex gap-4 mb-6 border-b border-[rgba(202,220,252,0.12)] pb-4 overflow-x-auto no-scrollbar">
+              <div className="flex gap-4 mb-6 border-b border-white/10 pb-4 overflow-x-auto no-scrollbar">
                 {examples.map((ex, i) => (
                   <button
                     key={i}
                     onClick={() => setActiveTab(i)}
                     className={`text-sm whitespace-nowrap font-medium transition-colors ${
-                      activeTab === i ? "text-accent" : "text-[#8A9CC5] hover:text-[#CADCFC]"
+                      activeTab === i ? "text-accent" : "text-white/55 hover:text-white/85"
                     }`}
                   >
                     {ex.title}
@@ -90,7 +90,7 @@ export default function ProductVision() {
                     animate={{ opacity: 1, y: 0 }}
                     exit={{ opacity: 0, y: -5 }}
                     transition={{ duration: 0.2 }}
-                    className="font-mono text-sm md:text-base leading-relaxed text-[#CADCFC]"
+                    className="font-mono text-sm md:text-base leading-relaxed text-white/85"
                   >
                     <span className="text-accent/50 mr-2">{">"}</span>
                     {examples[activeTab].text}
@@ -101,8 +101,8 @@ export default function ProductVision() {
           </div>
         </div>
 
-        <div className="mt-24 text-center border-t border-[rgba(202,220,252,0.12)] pt-16">
-          <h3 className="font-display text-3xl md:text-4xl lg:text-5xl text-white">
+        <div className="mt-24 text-center border-t border-[rgba(30,39,97,0.12)] pt-16">
+          <h3 className="font-display text-3xl md:text-4xl lg:text-5xl text-foreground">
             "A collaborative intelligence model that feels like a trusted CFO — not a dashboard, and not an automation fantasy."
           </h3>
         </div>

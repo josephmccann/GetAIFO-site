@@ -17,36 +17,36 @@ export default function Problem() {
   ];
 
   return (
-    <section id="problem" className="section-padding border-t border-[rgba(202,220,252,0.12)]">
+    <section id="problem" className="section-padding border-t border-[rgba(30,39,97,0.12)]">
       <div className="container-custom">
         <span className="text-label">THE PROBLEM</span>
         <div className="max-w-3xl mb-16">
-          <h2 className="text-5xl md:text-6xl text-white mb-6 leading-tight">
+          <h2 className="text-5xl md:text-6xl text-foreground mb-6 leading-tight">
             CFO-level decisions begin far earlier than CFO-level staffing.
           </h2>
-          <p className="text-xl md:text-2xl text-[#8A9CC5]">
+          <p className="text-xl md:text-2xl text-muted-foreground">
             Organizations under $50M face increasing financial complexity without the leadership infrastructure to manage it.
           </p>
         </div>
 
         <div className="grid md:grid-cols-3 gap-6 mb-20">
           {cards.map((card, i) => (
-            <motion.div 
+            <motion.div
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ delay: i * 0.1, duration: 0.5 }}
-              key={i} 
+              key={i}
               className="card-dark"
             >
               <h3 className="text-white text-xl font-bold font-body mb-3 tracking-normal">{card.title}</h3>
-              <p>{card.desc}</p>
+              <p className="text-white/80">{card.desc}</p>
             </motion.div>
           ))}
         </div>
 
         <div className="text-center max-w-4xl mx-auto">
-          <h3 className="text-3xl md:text-4xl text-white">
+          <h3 className="text-3xl md:text-4xl text-foreground">
             "Organizations outgrow their financial infrastructure before they can staff for it."
           </h3>
         </div>

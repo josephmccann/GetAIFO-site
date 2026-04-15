@@ -8,34 +8,34 @@ export default function HowItWorks() {
   ];
 
   return (
-    <section id="how-it-works" className="section-padding border-t border-[rgba(202,220,252,0.12)]">
+    <section id="how-it-works" className="section-padding border-t border-[rgba(30,39,97,0.12)]">
       <div className="container-custom">
         <span className="text-label">HOW IT WORKS</span>
-        <h2 className="font-display text-3xl md:text-4xl lg:text-5xl text-white mb-16">
+        <h2 className="font-display text-3xl md:text-4xl lg:text-5xl text-foreground mb-16">
           From raw data to decision-ready judgment.
         </h2>
 
         <div className="relative">
           {/* Subtle line for desktop arrows behind cards */}
-          <div className="hidden md:block absolute top-1/2 left-0 w-full h-[1px] bg-[rgba(202,220,252,0.08)] -translate-y-1/2 z-0"></div>
+          <div className="hidden md:block absolute top-1/2 left-0 w-full h-[1px] bg-[rgba(30,39,97,0.15)] -translate-y-1/2 z-0"></div>
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6 relative z-10">
             {steps.map((step, i) => (
-              <motion.div 
+              <motion.div
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ delay: i * 0.1, duration: 0.5 }}
-                key={step.num} 
-                className="bg-[rgba(202,220,252,0.06)] border border-[rgba(202,220,252,0.12)] rounded-lg p-6 md:p-8 relative bg-[#1E2761]"
+                key={step.num}
+                className="card-dark relative"
               >
                 <div className="text-accent font-display text-2xl mb-4">{step.num}</div>
                 <h3 className="text-white text-xl font-bold font-body mb-3">{step.title}</h3>
-                <p className="text-[#CADCFC] text-base leading-relaxed">{step.desc}</p>
-                
+                <p className="text-white/80 text-base leading-relaxed">{step.desc}</p>
+
                 {/* Desktop Arrow Connector */}
                 {i < steps.length - 1 && (
-                  <div className="hidden md:flex absolute top-1/2 -right-3 w-6 h-6 text-[#4A5A8A] -translate-y-1/2 translate-x-1/2 bg-[#212B68] rounded-full items-center justify-center border border-[rgba(202,220,252,0.12)] z-20">
+                  <div className="hidden md:flex absolute top-1/2 -right-3 w-6 h-6 text-muted-foreground -translate-y-1/2 translate-x-1/2 bg-card rounded-full items-center justify-center border border-[rgba(30,39,97,0.15)] z-20">
                     <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
                       <path d="M5 12h14m-7-7 7 7-7 7"/>
                     </svg>

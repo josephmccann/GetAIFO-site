@@ -13,19 +13,19 @@ export default function Hero() {
           transition={{ duration: 0.6 }}
           className="max-w-2xl"
         >
-          <p className="text-xs font-semibold tracking-[0.2em] text-[#8A9CC5] uppercase mb-6">
+          <p className="text-xs font-semibold tracking-[0.2em] text-accent uppercase mb-6">
             AI.FO • Early Access
           </p>
           <div className="mb-6">
-            <h1 className="font-display text-5xl sm:text-6xl md:text-7xl lg:text-8xl tracking-tight text-white mb-2" data-testid="hero-heading">
+            <h1 className="font-display text-5xl sm:text-6xl md:text-7xl lg:text-8xl tracking-tight text-foreground mb-2" data-testid="hero-heading">
               Financial judgment that works while you sleep.
             </h1>
             <div className="w-24 h-1 bg-accent rounded-full mt-6"></div>
           </div>
-          <p className="font-body text-base md:text-lg leading-relaxed text-[#CADCFC] mb-2 max-w-xl" data-testid="hero-subhead">
+          <p className="font-body text-base md:text-lg leading-relaxed text-foreground mb-2 max-w-xl" data-testid="hero-subhead">
             AI.FO connects to your accounting system, detects 38 financial signals in real time, and produces the kind of forward-looking guidance you'd expect from a CFO — continuously, not quarterly.
           </p>
-          <p className="font-body text-base md:text-lg leading-relaxed text-[#8A9CC5] mb-10 max-w-xl">
+          <p className="font-body text-base md:text-lg leading-relaxed text-muted-foreground mb-10 max-w-xl">
             No dashboards. No spreadsheets. Decision-ready intelligence, every month.
           </p>
           <div className="flex flex-col sm:flex-row gap-4">
