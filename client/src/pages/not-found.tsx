@@ -2,11 +2,11 @@ import { motion } from "framer-motion";
 
 export default function NotFound() {
   return (
-    <div className="min-h-screen bg-[#1E2761] text-white flex flex-col">
+    <div className="min-h-screen bg-[#C8D4F0] text-[#1E2761] flex flex-col">
       <nav className="py-5">
         <div className="container-custom">
           <a href="/" className="flex flex-col w-fit" data-testid="link-404-logo">
-            <span className="font-display text-3xl leading-none">AI.FO</span>
+            <span className="font-display text-3xl leading-none text-[#1E2761]">AI.FO</span>
             <div className="h-[2px] w-full bg-accent mt-1 rounded-full"></div>
           </a>
         </div>
@@ -20,10 +20,10 @@ export default function NotFound() {
           className="text-center px-6"
         >
           <p className="text-accent font-display text-8xl md:text-9xl mb-4" data-testid="text-404-code">404</p>
-          <h1 className="font-display text-3xl md:text-5xl text-white mb-4" data-testid="text-404-heading">
+          <h1 className="font-display text-3xl md:text-5xl text-[#1E2761] mb-4" data-testid="text-404-heading">
             Page not found.
           </h1>
-          <p className="text-[#8A9CC5] text-lg mb-10 max-w-md mx-auto">
+          <p className="text-[#4A5578] text-lg mb-10 max-w-md mx-auto">
             The page you're looking for doesn't exist or has been moved.
           </p>
           <a href="/" className="btn-primary" data-testid="link-404-home">
@@ -32,9 +32,9 @@ export default function NotFound() {
         </motion.div>
       </main>
 
-      <footer className="py-8 border-t border-[rgba(202,220,252,0.12)]">
+      <footer className="py-8 border-t border-[#A8B8D8]">
         <div className="container-custom text-center">
-          <span className="text-[#8A9CC5] text-sm">AI.FO &copy; {new Date().getFullYear()}</span>
+          <span className="text-[#4A5578] text-sm">AI.FO &copy; {new Date().getFullYear()}</span>
         </div>
       </footer>
     </div>
