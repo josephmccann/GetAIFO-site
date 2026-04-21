@@ -1,51 +1,53 @@
-import { motion } from "framer-motion";
-
-export default function HowItWorks() {
-  const steps = [
-    { num: "01", title: "Connect", desc: "Connect QuickBooks, banking, and payroll data. AI.FO ingests GL, bank transactions, accounts receivable, and expense records automatically." },
-    { num: "02", title: "Detect", desc: "The deterministic engine runs 26+ financial signals across 5 categories: Liquidity, Revenue, Margin, Working Capital, and Leverage. Every metric is formula-based, auditable, and repeatable." },
-    { num: "03", title: "Act", desc: "Receive plain-language intelligence briefs, constraint rankings, scenario models, and CFO-ready memos — not charts, not dashboards, but the judgment layer that tells you what to do and when." }
-  ];
-
+export function HowItWorks() {
   return (
-    <section id="how-it-works" className="section-padding border-t border-[rgba(202,220,252,0.12)]">
-      <div className="container-custom">
-        <span className="text-label">HOW IT WORKS</span>
-        <h2 className="font-display text-3xl md:text-4xl lg:text-5xl text-white mb-16">
-          From raw data to decision-ready judgment.
-        </h2>
+    <section className="section" id="how">
+      <div className="container">
+        <div className="kicker">How It Works</div>
+        <h2 className="h-xl">Three stages. Deterministic by design.</h2>
+        <p className="lede" style={{ marginBottom: 72 }}>
+          Every signal traces back to formula, source, and methodology. AI writes the memo at the end — it never recalculates the math.
+        </p>
 
-        <div className="relative">
-          {/* Subtle line for desktop arrows behind cards */}
-          <div className="hidden md:block absolute top-1/2 left-0 w-full h-[1px] bg-[rgba(202,220,252,0.08)] -translate-y-1/2 z-0"></div>
-
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 relative z-10">
-            {steps.map((step, i) => (
-              <motion.div 
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ delay: i * 0.1, duration: 0.5 }}
-                key={step.num} 
-                className="bg-[rgba(202,220,252,0.06)] border border-[rgba(202,220,252,0.12)] rounded-lg p-6 md:p-8 relative bg-[#1E2761]"
-              >
-                <div className="text-accent font-display text-2xl mb-4">{step.num}</div>
-                <h3 className="text-white text-xl font-bold font-body mb-3">{step.title}</h3>
-                <p className="text-[#CADCFC] text-base leading-relaxed">{step.desc}</p>
-                
-                {/* Desktop Arrow Connector */}
-                {i < steps.length - 1 && (
-                  <div className="hidden md:flex absolute top-1/2 -right-3 w-6 h-6 text-[#4A5A8A] -translate-y-1/2 translate-x-1/2 bg-[#212B68] rounded-full items-center justify-center border border-[rgba(202,220,252,0.12)] z-20">
-                    <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                      <path d="M5 12h14m-7-7 7 7-7 7"/>
-                    </svg>
-                  </div>
-                )}
-              </motion.div>
-            ))}
-          </div>
+        <div style={{
+          display: 'grid',
+          gridTemplateColumns: 'repeat(auto-fit, minmax(260px, 1fr))',
+          gap: 40,
+        }}>
+          <Step
+            num="01 · CONNECT"
+            title="Your books, safely ingested."
+            body="QuickBooks Online integration or CSV upload. Seven report-type parsers normalize P&L, balance sheet, A/R, A/P, sales, bank, and transaction detail."
+          />
+          <Step
+            num="02 · DETECT"
+            title="38 signals, running continuously."
+            body="The deterministic engine runs 38 financial signals across five categories: Liquidity, Revenue, Margin, Working Capital, and Leverage. Every metric is formula-based, auditable, and repeatable."
+          />
+          <Step
+            num="03 · ACT"
+            title="Narrative you can send to a board."
+            body="Claude synthesizes the signal outputs into a narrative brief with decision framing. Export as board memo, founder update, or investor email. Raw data never touches the LLM."
+          />
         </div>
       </div>
     </section>
+  );
+}
+
+function Step({ num, title, body }: { num: string; title: string; body: string }) {
+  return (
+    <div>
+      <div style={{
+        fontFamily: 'var(--f-mono)',
+        fontSize: 12,
+        letterSpacing: '0.12em',
+        textTransform: 'uppercase',
+        color: 'var(--c-accent)',
+        marginBottom: 16,
+        fontWeight: 600,
+      }}>{num}</div>
+      <h3 className="h-lg">{title}</h3>
+      <p className="body">{body}</p>
+    </div>
   );
 }

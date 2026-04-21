@@ -1,3 +1,4 @@
+import "dotenv/config";
 import express, { type Request, Response, NextFunction } from "express";
 import { registerRoutes } from "./routes";
 import { serveStatic } from "./static";
@@ -54,7 +55,9 @@ app.use((req, res, next) => {
     (p.includes("/.") && !p.includes("/.vite/")) ||
     p.endsWith(".env") ||
     p.includes("/config.env") ||
-    (p.startsWith("/api/") && p !== "/api/waitlist")
+    (p.startsWith("/api/") &&
+      p !== "/api/waitlist" &&
+      !p.startsWith("/api/stats/"))
   ) {
     return res.status(404).send("Not found");
   }
@@ -134,8 +137,8 @@ app.use((req, res, next) => {
   httpServer.listen(
     {
       port,
-      host: "0.0.0.0",
-      reusePort: true,
+      host: process.env.HOST || "0.0.0.0",
+      
     },
     () => {
       log(`serving on port ${port}`);

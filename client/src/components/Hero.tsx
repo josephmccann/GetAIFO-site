@@ -1,120 +1,193 @@
-import { motion } from "framer-motion";
+import { useEffect, useRef, useState } from 'react';
 
-export default function Hero() {
+const BRIEF_HEADLINE_LINE_1 = "Runway compressed 2.4 months this quarter.";
+const BRIEF_HEADLINE_LINE_2 = "Your P&L didn't show it.";
+
+export function Hero() {
+  const [typedText, setTypedText] = useState('');
+  const [line2Started, setLine2Started] = useState(false);
+  const [typingDone, setTypingDone] = useState(false);
+  const hasStartedRef = useRef(false);
+
+  useEffect(() => {
+    const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    if (prefersReduced) {
+      setTypedText(BRIEF_HEADLINE_LINE_1 + '\n' + BRIEF_HEADLINE_LINE_2);
+      setTypingDone(true);
+      return;
+    }
+
+    if (hasStartedRef.current) return;
+    hasStartedRef.current = true;
+
+    let i = 0;
+    const fullText = BRIEF_HEADLINE_LINE_1 + '\n' + BRIEF_HEADLINE_LINE_2;
+
+    const startDelay = setTimeout(() => {
+      const interval = setInterval(() => {
+        if (i >= fullText.length) {
+          clearInterval(interval);
+          setTypingDone(true);
+          return;
+        }
+        setTypedText(fullText.slice(0, i + 1));
+        if (i === BRIEF_HEADLINE_LINE_1.length) setLine2Started(true);
+        i++;
+      }, 30);
+
+      return () => clearInterval(interval);
+    }, 400);
+
+    return () => clearTimeout(startDelay);
+  }, []);
+
+  const displayLines = typedText.split('\n');
+
   return (
-    <section className="relative min-h-[90vh] flex items-center pt-24 pb-12 overflow-hidden">
-      {/* Background glow */}
-      <div className="absolute top-1/4 left-1/4 w-[500px] h-[500px] bg-accent/10 rounded-full blur-[120px] pointer-events-none" />
-      
-      <div className="container-custom relative z-10 grid lg:grid-cols-2 gap-12 lg:gap-8 items-center">
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6 }}
-          className="max-w-2xl"
-        >
-          <p className="text-xs font-semibold tracking-[0.2em] text-[#8A9CC5] uppercase mb-6">
-            AI.FO • Early Access
+    <section style={{ paddingTop: 128, paddingBottom: 96 }}>
+      <div className="container" style={{
+        display: 'grid',
+        gridTemplateColumns: 'minmax(0, 1fr) minmax(0, 1fr)',
+        gap: 64,
+        alignItems: 'center',
+      }}>
+        <div className="hero-copy">
+          <div className="kicker"><span className="accent">●</span> AI.FO · Early Access</div>
+          <h1 className="h-display">Financial judgment,<br />without the CFO headcount.</h1>
+          <p className="lede">
+            AI.FO turns accounting data into the kind of forward-looking guidance you'd expect from a seasoned CFO.
+            A deterministic engine detects 38 financial signals. Claude synthesizes them into a memo you can actually act on.{' '}
+            <strong style={{ color: 'var(--c-text)', fontWeight: 500 }}>
+              AI never touches the math. By design, not by policy.
+            </strong>
           </p>
-          <div className="mb-6">
-            <h1 className="font-display text-5xl sm:text-6xl md:text-7xl lg:text-8xl tracking-tight text-white mb-2" data-testid="hero-heading">
-              Financial judgment that works while you sleep.
-            </h1>
-            <div className="w-24 h-1 bg-accent rounded-full mt-6"></div>
-          </div>
-          <p className="font-body text-base md:text-lg leading-relaxed text-[#CADCFC] mb-2 max-w-xl" data-testid="hero-subhead">
-            AI.FO connects to your accounting system, detects 38 financial signals in real time, and produces the kind of forward-looking guidance you'd expect from a CFO — continuously, not quarterly.
+          <p className="sub-lede">
+            The product is built. The engine runs nightly against 20 synthetic companies. We're onboarding our first cohort of real organizations now.
+            <br />
+            <span style={{ color: 'var(--c-text-muted)' }}>One hour of a fractional CFO costs more than a month of AI.FO.</span>
           </p>
-          <p className="font-body text-base md:text-lg leading-relaxed text-[#8A9CC5] mb-10 max-w-xl">
-            No dashboards. No spreadsheets. Decision-ready intelligence, every month.
-          </p>
-          <div className="flex flex-col sm:flex-row gap-4">
-            <a href="#early-access" className="btn-primary" data-testid="hero-btn-primary">
-              Join Early Access
-            </a>
-            <a href="#early-access" className="btn-secondary" data-testid="hero-btn-demo">
-              Try the Live Demo
-            </a>
+          <div style={{ display: 'flex', gap: 12, flexWrap: 'wrap' }}>
+            <a href="#early-access" className="btn btn-primary">Join Early Access →</a>
+            <a href="https://demo.getaifo.com" className="btn btn-secondary">Try the Live Demo</a>
           </div>
-        </motion.div>
+        </div>
 
-        {/* Abstract Visual Panel */}
-        <motion.div
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ duration: 1, delay: 0.2 }}
-          className="relative h-[300px] lg:h-[500px] w-full"
-        >
-          <div className="absolute inset-0 overflow-hidden flex items-center justify-center rounded-lg border border-[rgba(202,220,252,0.12)]" style={{ background: "linear-gradient(145deg, #1A2740 0%, #223352 40%, #283D5E 100%)" }}>
-            {/* SVG Grid */}
-            <svg width="100%" height="100%" xmlns="http://www.w3.org/2000/svg" className="absolute inset-0 opacity-[0.08]">
-              <defs>
-                <pattern id="grid" width="40" height="40" patternUnits="userSpaceOnUse">
-                  <path d="M 40 0 L 0 0 0 40" fill="none" stroke="rgba(140,180,255,0.5)" strokeWidth="0.5" />
-                </pattern>
-              </defs>
-              <rect width="100%" height="100%" fill="url(#grid)" />
-            </svg>
-
-            {/* Subtle corner glow */}
-            <div className="absolute -bottom-20 -right-20 w-[300px] h-[300px] bg-[#60A5FA]/[0.04] rounded-full blur-[80px] pointer-events-none" />
-            <div className="absolute -top-10 -left-10 w-[200px] h-[200px] bg-accent/[0.03] rounded-full blur-[60px] pointer-events-none" />
-
-            {/* Smooth abstract curves */}
-            <svg viewBox="0 0 500 400" className="absolute inset-0 w-full h-full" preserveAspectRatio="none">
-              <defs>
-                <linearGradient id="trend" x1="0%" y1="100%" x2="100%" y2="0%">
-                  <stop offset="0%" stopColor="#60A5FA" stopOpacity="0" />
-                  <stop offset="40%" stopColor="#60A5FA" stopOpacity="0.15" />
-                  <stop offset="70%" stopColor="#CC6600" stopOpacity="0.5" />
-                  <stop offset="100%" stopColor="#CC6600" stopOpacity="0.9" />
-                </linearGradient>
-                <linearGradient id="trendFill" x1="0%" y1="0%" x2="100%" y2="0%">
-                  <stop offset="0%" stopColor="#60A5FA" stopOpacity="0" />
-                  <stop offset="50%" stopColor="#60A5FA" stopOpacity="0.06" />
-                  <stop offset="100%" stopColor="#CC6600" stopOpacity="0.08" />
-                </linearGradient>
-              </defs>
-              <path d="M-50,350 Q150,300 250,200 T550,50" fill="none" stroke="url(#trend)" strokeWidth="3" />
-              <path d="M-50,350 Q150,300 250,200 T550,50 L550,450 L-50,450 Z" fill="url(#trendFill)" />
-            </svg>
-
-            {/* Floating metric chips */}
-            <motion.div 
-              animate={{ y: [0, -10, 0] }} 
-              transition={{ repeat: Infinity, duration: 4, ease: "easeInOut" }}
-              className="absolute top-[15%] left-[5%] lg:top-[20%] lg:left-[10%] bg-[#0A1A2F]/90 backdrop-blur border border-[#4ADE80]/30 rounded-full px-3 py-1.5 lg:px-4 lg:py-2 shadow-lg shadow-[#4ADE80]/5"
-            >
-              <span className="text-[#4ADE80] font-semibold text-xs lg:text-sm">Runway: 11 months</span>
-            </motion.div>
-
-            <motion.div 
-              animate={{ y: [0, 10, 0] }} 
-              transition={{ repeat: Infinity, duration: 5, ease: "easeInOut", delay: 1 }}
-              className="absolute top-[35%] right-[5%] lg:top-[40%] lg:right-[15%] bg-[#0A1A2F]/90 backdrop-blur border border-[#F87171]/30 rounded-full px-3 py-1.5 lg:px-4 lg:py-2 shadow-lg shadow-[#F87171]/5"
-            >
-              <span className="text-[#F87171] font-semibold text-xs lg:text-sm">Burn ↑ 22%</span>
-            </motion.div>
-
-            <motion.div 
-              animate={{ y: [0, -8, 0] }} 
-              transition={{ repeat: Infinity, duration: 4.5, ease: "easeInOut", delay: 2 }}
-              className="absolute bottom-[30%] left-[20%] lg:left-[30%] bg-[#0A1A2F]/90 backdrop-blur border border-[#60A5FA]/30 rounded-full px-3 py-1.5 lg:px-4 lg:py-2 shadow-lg shadow-[#60A5FA]/5"
-            >
-              <span className="text-[#60A5FA] font-semibold text-xs lg:text-sm">Margin: 38%</span>
-            </motion.div>
-
-            <motion.div 
-              animate={{ y: [0, 5, 0] }} 
-              transition={{ repeat: Infinity, duration: 3.5, ease: "easeInOut", delay: 0.5 }}
-              className="absolute bottom-[10%] right-[10%] lg:bottom-[15%] lg:right-[25%] bg-[#0A1A2F]/90 backdrop-blur border border-[#FBBF24]/30 rounded-full px-3 py-1.5 lg:px-4 lg:py-2 flex items-center gap-2 shadow-lg shadow-[#FBBF24]/5"
-            >
-              <div className="w-2 h-2 rounded-full bg-[#FBBF24] animate-pulse" />
-              <span className="text-[#FBBF24] font-semibold text-xs lg:text-sm">Variance detected</span>
-            </motion.div>
+        <div className="hero-brief">
+          <div className="hero-brief-head">
+            <span className="hero-brief-title">AI.FO · Intelligence Brief</span>
+            <span className="hero-brief-stamp">Sample output</span>
           </div>
-        </motion.div>
+
+          <div className="hero-brief-body">
+            <h3 className="hero-brief-headline" aria-label={`${BRIEF_HEADLINE_LINE_1} ${BRIEF_HEADLINE_LINE_2}`}>
+              {displayLines[0]}
+              {!line2Started && !typingDone && <span className="headline-cursor" aria-hidden="true" />}
+              {line2Started && <br />}
+              {displayLines[1]}
+              {line2Started && !typingDone && <span className="headline-cursor" aria-hidden="true" />}
+            </h3>
+            <p className="hero-brief-prose">
+              Cash on hand looks stable, but three compounding factors moved in the same direction — payroll growth outpacing revenue, receivables slowing, and upcoming renewals committed against a smaller cash base.
+            </p>
+            <p className="hero-brief-prose">
+              The shift is invisible to standard reporting. AI.FO detected it across four signals and surfaced a corrective action path this week.
+            </p>
+          </div>
+
+          <div className="hero-brief-foot">
+            <span className="hero-brief-signal">RUNWAY COMPRESSION</span>
+            <span className="hero-brief-meta">4 signals · <span className="mono">94%</span> confidence</span>
+          </div>
+        </div>
       </div>
+
+      <style>{`
+        .hero-brief {
+          display: flex; flex-direction: column;
+          background: var(--c-surface);
+          border: 1px solid var(--c-border);
+          border-radius: var(--r-lg);
+          overflow: hidden;
+        }
+        [data-theme="light"] .hero-brief { box-shadow: var(--shadow-md); }
+
+        .hero-brief-head {
+          padding: 16px 24px;
+          border-bottom: 1px solid var(--c-border);
+          display: flex; justify-content: space-between; align-items: center;
+          background: var(--c-raised);
+        }
+        [data-theme="light"] .hero-brief-head { background: var(--c-canvas); }
+
+        .hero-brief-title {
+          font-size: var(--t-sm); font-weight: 500; color: var(--c-text-muted);
+          letter-spacing: 0.02em;
+        }
+        .hero-brief-stamp {
+          font-family: var(--f-mono); font-size: var(--t-xs);
+          letter-spacing: 0.12em; text-transform: uppercase;
+          color: var(--c-accent); font-weight: 500;
+        }
+
+        .hero-brief-body {
+          padding: 32px 28px 24px;
+          flex: 1; display: flex; flex-direction: column; gap: 18px;
+        }
+
+        .hero-brief-headline {
+          font-size: 28px; font-weight: 600;
+          letter-spacing: -0.02em; line-height: 1.2;
+          color: var(--c-text);
+          margin: 0 0 6px;
+          min-height: 2.4em;
+        }
+
+        .headline-cursor {
+          display: inline-block;
+          width: 2px;
+          height: 0.9em;
+          margin-left: 2px;
+          background: var(--c-accent);
+          vertical-align: text-bottom;
+          animation: cursor-blink 900ms var(--ease-quick) infinite;
+        }
+
+        @keyframes cursor-blink {
+          0%, 45% { opacity: 1; }
+          50%, 95% { opacity: 0; }
+          100% { opacity: 1; }
+        }
+
+        .hero-brief-prose {
+          font-size: var(--t-md); line-height: 1.65;
+          color: var(--c-text-muted);
+          margin: 0;
+        }
+
+        .hero-brief-foot {
+          margin-top: auto;
+          padding: 16px 24px; border-top: 1px solid var(--c-border);
+          display: flex; justify-content: space-between; align-items: center;
+          background: var(--c-raised);
+        }
+        [data-theme="light"] .hero-brief-foot { background: var(--c-canvas); }
+
+        .hero-brief-signal {
+          font-family: var(--f-mono); font-size: var(--t-xs);
+          letter-spacing: 0.12em; text-transform: uppercase;
+          color: var(--c-accent); font-weight: 600;
+        }
+
+        .hero-brief-meta {
+          font-size: var(--t-xs); color: var(--c-text-dim);
+          letter-spacing: 0.05em;
+        }
+        .hero-brief-meta .mono { color: var(--c-text-muted); font-weight: 500; }
+
+        @media (max-width: 900px) {
+          .hero-copy + .hero-brief { grid-column: 1; }
+        }
+      `}</style>
     </section>
   );
 }
