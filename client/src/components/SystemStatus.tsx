@@ -1,13 +1,11 @@
 import { useEffect, useState } from 'react';
 
 type LatestRun = {
-  id: string;
-  runDate: string | null;
-  runTime: string | null;
+  runDate: string;
   totalAssertions: number | null;
   passed: number | null;
   failed: number | null;
-  result: 'pass' | 'fail' | 'unknown';
+  result: 'pass' | 'fail' | 'partial' | 'unknown';
   gitSha: string | null;
 };
 
@@ -16,40 +14,26 @@ type FetchState =
   | { kind: 'ok'; run: LatestRun | null }
   | { kind: 'unreachable' };
 
-// Format a UTC-ish ISO timestamp as "Apr 20 · 2:14 AM PT".
-function formatPacific(iso: string | null, time: string | null): string | null {
+function formatPacific(iso: string | null): string | null {
   if (!iso) return null;
-  const base = new Date(iso);
-  if (Number.isNaN(base.getTime())) return null;
-  // If Airtable stored a separate "Run Time" (HH:MM) use it; otherwise use the
-  // time component of the ISO.
-  if (time && /^\d{1,2}:\d{2}/.test(time)) {
-    const [hStr, mStr] = time.split(':');
-    const h = Number(hStr);
-    const m = Number(mStr);
-    if (Number.isFinite(h) && Number.isFinite(m)) {
-      base.setHours(h, m, 0, 0);
-    }
-  }
-  const dateStr = base.toLocaleDateString('en-US', {
+  // ISO date only (YYYY-MM-DD). Nightly runs kick off at 2 AM PT; anchor at
+  // 09:00 UTC as an approximation that survives DST transitions without
+  // lying about the real wall-clock start.
+  const d = new Date(`${iso}T09:00:00Z`);
+  if (Number.isNaN(d.getTime())) return null;
+  const dateStr = d.toLocaleDateString('en-US', {
     month: 'short',
     day: 'numeric',
     timeZone: 'America/Los_Angeles',
   });
-  const timeStr = base.toLocaleTimeString('en-US', {
-    hour: 'numeric',
-    minute: '2-digit',
-    hour12: true,
-    timeZone: 'America/Los_Angeles',
-  });
-  return `${dateStr} · ${timeStr} PT`;
+  return `${dateStr} · 2:00 AM PT`;
 }
 
 function isStale(iso: string | null): boolean {
   if (!iso) return true;
-  const t = Date.parse(iso);
+  const t = Date.parse(`${iso}T09:00:00Z`);
   if (Number.isNaN(t)) return true;
-  return Date.now() - t > 48 * 60 * 60 * 1000; // 48h
+  return Date.now() - t > 48 * 60 * 60 * 1000;
 }
 
 export function SystemStatus() {
@@ -89,7 +73,6 @@ export function SystemStatus() {
           borderRadius: 'var(--r-lg)',
           overflow: 'hidden',
         }}>
-          {/* Header row with LIVE pill */}
           <div style={{
             padding: '14px 24px',
             borderBottom: '1px solid var(--c-border)',
@@ -130,7 +113,6 @@ export function SystemStatus() {
             </span>
           </div>
 
-          {/* Top zone — 4 structural stats */}
           <div style={{
             padding: '24px',
             display: 'grid',
@@ -143,7 +125,6 @@ export function SystemStatus() {
             <ProofStat value="5" label="Categories: Liquidity · Revenue · Margin · Working Capital · Leverage" />
           </div>
 
-          {/* Bottom zone — live run data (hidden if unreachable) */}
           {state.kind !== 'unreachable' && (
             <div style={{
               padding: '18px 24px',
@@ -210,9 +191,8 @@ function LiveZone({ state }: { state: FetchState }) {
   if (state.kind !== 'ok') return null;
   const run = state.run;
   const stale = isStale(run?.runDate ?? null);
-  const failed = run && run.failed != null && run.failed > 0;
+  const failed = run && ((run.failed != null && run.failed > 0) || run.result === 'fail' || run.result === 'partial');
 
-  // Stale (>48h) OR no run recorded — graceful generic line
   if (!run || stale) {
     return (
       <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', flexWrap: 'wrap', gap: 12 }}>
@@ -226,7 +206,6 @@ function LiveZone({ state }: { state: FetchState }) {
     );
   }
 
-  // Recent run had failures — honest but non-alarming on home
   if (failed) {
     return (
       <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', flexWrap: 'wrap', gap: 12 }}>
@@ -240,7 +219,7 @@ function LiveZone({ state }: { state: FetchState }) {
     );
   }
 
-  const when = formatPacific(run.runDate, run.runTime) ?? '—';
+  const when = formatPacific(run.runDate) ?? '—';
   const total = run.totalAssertions ?? (run.passed ?? 0) + (run.failed ?? 0);
   return (
     <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', flexWrap: 'wrap', gap: 16 }}>

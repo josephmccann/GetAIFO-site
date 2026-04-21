@@ -132,13 +132,13 @@ export async function registerRoutes(
     }
   });
 
-  app.get("/api/stats/run/:runId", async (req, res) => {
-    const runId = String(req.params.runId || "");
-    if (!/^rec[A-Za-z0-9]{10,20}$/.test(runId)) {
+  app.get("/api/stats/run/:runDate", async (req, res) => {
+    const runDate = String(req.params.runDate || "");
+    if (!/^\d{4}-\d{2}-\d{2}$/.test(runDate)) {
       return res.status(400).json({ ok: false, code: "INVALID_ID" });
     }
     try {
-      const detail = await getRunDetail(runId);
+      const detail = await getRunDetail(runDate);
       if (!detail) return res.status(404).json({ ok: false, code: "NOT_FOUND" });
       return res.status(200).json({ ok: true, ...detail });
     } catch (err) {
