@@ -2,6 +2,7 @@ import type { Express } from "express";
 import { createServer, type Server } from "http";
 import { z } from "zod";
 import { isRateLimited } from "./rateLimit";
+import { getLatestRun, listRecentRuns, getRunDetail } from "./airtableStats";
 
 const waitlistSchema = z.object({
   name: z.string().min(1).max(500).transform((s) => s.trim()),
@@ -102,6 +103,47 @@ export async function registerRoutes(
         code: "INTERNAL_ERROR",
         error: "An unexpected error occurred. Please try again.",
       });
+    }
+  });
+
+  // ── /api/stats/* — pressure-test transparency endpoints ─────────────────
+  // Back the SystemStatus panel and /status page. Read-only, anonymized,
+  // and tolerant of Airtable schema variance.
+
+  app.get("/api/stats/latest-run", async (_req, res) => {
+    try {
+      const run = await getLatestRun();
+      if (!run) return res.status(200).json({ ok: true, data: null });
+      return res.status(200).json({ ok: true, data: run });
+    } catch (err) {
+      console.error("stats/latest-run:", (err as Error).message);
+      return res.status(502).json({ ok: false, code: "UPSTREAM_ERROR" });
+    }
+  });
+
+  app.get("/api/stats/runs", async (req, res) => {
+    try {
+      const limit = Math.min(Math.max(Number(req.query.limit ?? 7) || 7, 1), 30);
+      const runs = await listRecentRuns(limit);
+      return res.status(200).json({ ok: true, runs });
+    } catch (err) {
+      console.error("stats/runs:", (err as Error).message);
+      return res.status(502).json({ ok: false, code: "UPSTREAM_ERROR", runs: [] });
+    }
+  });
+
+  app.get("/api/stats/run/:runId", async (req, res) => {
+    const runId = String(req.params.runId || "");
+    if (!/^rec[A-Za-z0-9]{10,20}$/.test(runId)) {
+      return res.status(400).json({ ok: false, code: "INVALID_ID" });
+    }
+    try {
+      const detail = await getRunDetail(runId);
+      if (!detail) return res.status(404).json({ ok: false, code: "NOT_FOUND" });
+      return res.status(200).json({ ok: true, ...detail });
+    } catch (err) {
+      console.error("stats/run:", (err as Error).message);
+      return res.status(502).json({ ok: false, code: "UPSTREAM_ERROR" });
     }
   });
 

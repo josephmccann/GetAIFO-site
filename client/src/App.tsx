@@ -10,14 +10,16 @@ import NotFound from "@/pages/not-found";
 // Legal pages are lazy-loaded so they don't bloat the home-page bundle.
 const Privacy = lazy(() => import("@/pages/privacy"));
 const Terms = lazy(() => import("@/pages/terms"));
+const Status = lazy(() => import("@/pages/status"));
 
 function Router() {
   return (
-    <Suspense fallback={<div className="min-h-screen bg-[#1E2761]" />}>
+    <Suspense fallback={<div className="min-h-screen" style={{ background: "var(--c-canvas)" }} />}>
       <Switch>
         <Route path="/" component={Home} />
         <Route path="/privacy" component={Privacy} />
         <Route path="/terms" component={Terms} />
+        <Route path="/status" component={Status} />
         <Route component={NotFound} />
       </Switch>
     </Suspense>

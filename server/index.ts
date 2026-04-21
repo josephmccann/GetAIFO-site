@@ -54,7 +54,9 @@ app.use((req, res, next) => {
     (p.includes("/.") && !p.includes("/.vite/")) ||
     p.endsWith(".env") ||
     p.includes("/config.env") ||
-    (p.startsWith("/api/") && p !== "/api/waitlist")
+    (p.startsWith("/api/") &&
+      p !== "/api/waitlist" &&
+      !p.startsWith("/api/stats/"))
   ) {
     return res.status(404).send("Not found");
   }
